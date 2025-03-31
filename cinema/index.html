@@ -1,3 +1,4 @@
+<!--Informações iniciais necessárias para a página-->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,45 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cine Finder</title>
     <link rel="stylesheet" href="style.css">
-    <script src="js.js"></script>
+    <script LANGUAGE="JavaScript">
+        function home() {
+            window.location.href = "index.html";
+        }
+        function comunidade() {
+            window.location.href = "comunidade.html";
+        }        
+        function login() {
+            window.location.href = "login.html";
+        }
+    </script>
 </head>
+
+<!--Corpo da página-->
 <body>
+    <!--Cabeçalho da página com seus botõees-->
     <header>
-   
         <nav class="menu">
             <div">
-                <img class="chacha" src="img/logo.png" alt="" height="100", width="100">
+                <img class="chacha" src="img/logo.png" alt="" height="150", width="150">
             </div>
-            <h1 class="uiui">CINE FINDER</h1>
-            <div class="itens_Menu">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="comunidade.html">Comunidade</a></li>
-                    <li><a href="login.html">login</a></li>
-                </ul>
-            </div>  
+            <div><h1 class="uiui">CINE FINDER</h1>
+                <div class="botoes_cima">
+                    <input class="button" type="button" value="Home" onclick="home()">
+                    <input class="button" type="button" value="Comunidade" onclick="comunidade()">
+                    <input class="button" type="button" value="Login" onclick="login()">
+                </div>
+            </div>
         </nav> 
-
-
-
     </header>
-        <div class="bebado">
-           <h1>POPULARES NESTA SEMANA<img src="img/lupa.png" alt="" height="50px" width="50px"><input text="" name="busca" value="" placeholder="Buscar"></h1>
+
+<!--Aba de populares pesquisa da página-->
+        <div class="aba_amarela">
+            <div class="aba_busca">
+            <h2 >POPULARES NESTA SEMANA<img class="item_buscar" src="img/lupa.png" alt="" height="50px" width="50px"><input class="barra_busca" text="" name="busca" value="" placeholder=" Buscar"></h2></div>
         </div>
 
+        
 
 
 
 
 
-            <div class="karate_bao">
+<!--Aba de filmes com os posteres dos filmes-->
+            <div class="filmes">
                 <img class="posteres" src="img/monkey.avif" alt="">
                 <img class="posteres" src="img/flow.jpg" alt="">
-                <img class="posteresvitoria" src="img/vitoria.jpg" alt="">
+                <img class="posteres" src="img/vitoria.jpg" alt="">
                 <img class="posteres" src="img/aindaestouaqui.avif" alt="">
-
             </div>
 
+<!--Botões de Sessões e Resenhas (ainda não pronto)-->
             <div class="botoes_baixo">
                 <input type="button" value="RESENHAS">
                 <input type="button" value="RESENHAS">
@@ -58,7 +72,7 @@
 
 
     <h1></h1>
-    <footer>Desenvolvido por mim chupa</footer>
+    <footer>Desenvolvido por mim SSSIIUUUUUUUUUUU</footer>
     
 </body>
 </html>

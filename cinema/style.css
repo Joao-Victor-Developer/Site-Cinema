@@ -1,9 +1,47 @@
 .posteres{
-max-height: 500px;
-max-width: 500px;
+max-height: 400px;
+max-width: 450px;
+margin-left: 20px;
 }
 
+.filmes{
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 50px;
+    background: linear-gradient(to bottom, rgb(128, 128, 128), rgb(255, 255, 255));
+    padding: 1%;
+    border-radius: 20px;
+}
 
+.botoes_cima{
+    margin-left: 500px;
+    margin-top: -75px;
+}
+
+.button{
+    background-color: rgb(20, 20, 20);
+    color:white;
+    border-radius: 20px;
+    width: 250px;
+    height: 50px;
+    font-size: larger;
+    margin-left: 20px;
+}
+
+.barra_busca{
+    border-radius: 50px;
+    margin-left: 50px;
+    size-adjust: 50%;
+    font-size: xx-large;
+    background-color: rgb(20, 20, 20);
+    color:white;
+}
+
+.item_buscar{
+    margin-top: 5px;
+}
 
 h1{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -27,11 +65,6 @@ a{
     align-items: center;
 }
 
-.posteresvitoria{
-    height: 500px;
-    width: 360px;
-    }
-
 .botoes_baixo{
     margin-left: 500px;
 }
@@ -52,10 +85,21 @@ font-family:'Times New Roman', Times, serif;
 font-size: larger;
 }
 
-.bebado{
-    background-color: rgb(239, 183, 24);
-    border-radius: 40px;
+.aba_busca{
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-size: xx-large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     
+}
+
+.aba_amarela{
+    background-color: rgb(239, 183, 24);
+    border-radius: 80px;
+    width: 1230px;
+    height: 80px;
+    margin-left: 100px;
+    margin-top: 85px;
 }
 .botoes_baixo{
     background-color: gray;
@@ -63,12 +107,11 @@ font-size: larger;
     margin-left: 90px;
 }
 
-.karate_bao{
-    margin-left: 20 px;
-}
+
 .uiui{
-    margin-left: 100px;
-    margin-top: -55px;
+    margin-left: 150px;
+    margin-top: -95px;
+    font-size: xx-large;
 }
 .chacha{
     margin-left: 0px;
