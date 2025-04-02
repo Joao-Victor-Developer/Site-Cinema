@@ -1,7 +1,24 @@
 .posteres{
-max-height: 400px;
-max-width: 450px;
+max-height: 492px;
+width: 20%;
+height: 20%;
+max-width: 723px;
 margin-left: 20px;
+}
+
+@media (max-width: 719px) {
+    body{
+        display: none;
+    }
+}
+
+.menu_filmes{
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+
 }
 
 .filmes{
@@ -13,34 +30,25 @@ margin-left: 20px;
     background: linear-gradient(to bottom, rgb(128, 128, 128), rgb(255, 255, 255));
     padding: 1%;
     border-radius: 20px;
+    width: 100%;
+    height: 100%;
 }
 
 .botoes_cima{
-    margin-left: 500px;
-    margin-top: -75px;
+    margin-left: 50%;
+    margin-top: -60px;
 }
 
 .button{
     background-color: rgb(20, 20, 20);
     color:white;
     border-radius: 20px;
-    width: 250px;
-    height: 50px;
-    font-size: larger;
+    max-width: 200px;
+    width: 100%;
+    max-height: 150px;
+    height: 100%;
+    font-size: 150%;
     margin-left: 20px;
-}
-
-.barra_busca{
-    border-radius: 50px;
-    margin-left: 50px;
-    size-adjust: 50%;
-    font-size: xx-large;
-    background-color: rgb(20, 20, 20);
-    color:white;
-}
-
-.item_buscar{
-    margin-top: 5px;
 }
 
 h1{
@@ -65,12 +73,10 @@ a{
     align-items: center;
 }
 
-.botoes_baixo{
-    margin-left: 500px;
-}
 body{
     background-color: white;
 }
+
 
 footer{
     background-color: rgb(0, 0, 0);
@@ -83,28 +89,40 @@ footer{
 border-radius: 20px;
 font-family:'Times New Roman', Times, serif;
 font-size: larger;
+height: 100%;
+width: 100%;
 }
 
 .aba_busca{
     margin-left: 20px;
-    margin-bottom: 10px;
     font-size: xx-large;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width: 100%;
+    height: 100%;
     
 }
 
 .aba_amarela{
     background-color: rgb(239, 183, 24);
     border-radius: 80px;
-    width: 1230px;
-    height: 80px;
-    margin-left: 100px;
-    margin-top: 85px;
+    max-width: 1200px;
+    max-height: 80px;
+    margin-left: 50%;
+    margin-top: 50px;
 }
+
 .botoes_baixo{
-    background-color: gray;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
     border-radius: 40px;
     margin-left: 90px;
+}
+
+.button_baixo{
+    background-color: rgb(20, 20, 20);
+    color: white;
 }
 
 
@@ -116,4 +134,8 @@ font-size: larger;
 .chacha{
     margin-left: 0px;
     margin-top: 0px;
+    width: 100%;
+    height: 100%;
+    width: 150px;
+    height: 150px;
 }
