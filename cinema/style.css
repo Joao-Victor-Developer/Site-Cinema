@@ -1,3 +1,31 @@
+.carousel {
+    max-width: 500px; /* Define a largura máxima do carrossel */
+    margin: 0 auto; /* Centraliza o carrossel na página */
+    border-radius: 10px; /* Arredonda as bordas */
+    overflow: hidden; /* Garante que as imagens sigam o formato do carrossel */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra para destacar */
+    
+}
+
+.carousel-inner img {
+    max-width: 100%;
+    height: 700px; /* Mantém a proporção original */
+  
+}
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); /* Adiciona um fundo escuro semitransparente aos ícones de controle */
+    border-radius: 50%; /* Faz com que os botões fiquem circulares */
+    padding: 10px; /* Aumenta o tamanho dos botões */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%; /* Ajusta a largura dos botões de navegação */
+}
+
 .posteres{
 max-height: 492px;
 width: 20%;
