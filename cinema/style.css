@@ -1,5 +1,10 @@
+.modo_escuro{
+    background-color: rgb(15, 15, 15);
+    color: aliceblue;
+}
+
 .carousel {
-    max-width: 500px; /* Define a largura máxima do carrossel */
+    max-width: 1800px; /* Define a largura máxima do carrossel */
     margin: 0 auto; /* Centraliza o carrossel na página */
     border-radius: 10px; /* Arredonda as bordas */
     overflow: hidden; /* Garante que as imagens sigam o formato do carrossel */
@@ -13,25 +18,31 @@
   
 }
 
+.botao_de_escuro{
+    margin-left: 20%;
+}
+
+.lupa{
+    margin-left: 20%;
+}
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5); /* Adiciona um fundo escuro semitransparente aos ícones de controle */
+    background-color: rgb(255, 255, 255); /* Adiciona um fundo escuro semitransparente aos ícones de controle */
     border-radius: 50%; /* Faz com que os botões fiquem circulares */
-    padding: 10px; /* Aumenta o tamanho dos botões */
+    padding: 30px; /* Aumenta o tamanho dos botões */
 }
 
 .carousel-control-prev,
 .carousel-control-next {
     width: 5%; /* Ajusta a largura dos botões de navegação */
+    max-width: 3%;
 }
-
-.posteres{
-max-height: 492px;
-width: 20%;
-height: 20%;
-max-width: 723px;
-margin-left: 20px;
+footer{
+    background-color: rgb(0, 0, 0);
+    color:white;
+    padding: 2%;
+    margin-top: 2%;
 }
 
 @media (max-width: 719px) {
@@ -40,27 +51,6 @@ margin-left: 20px;
     }
 }
 
-.menu_filmes{
-    width: 100%;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    display: flex;
-
-}
-
-.filmes{
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    display: flex;
-    margin-bottom: 50px;
-    background: linear-gradient(to bottom, rgb(128, 128, 128), rgb(255, 255, 255));
-    padding: 1%;
-    border-radius: 20px;
-    width: 100%;
-    height: 100%;
-}
 
 .botoes_cima{
     margin-left: 50%;
@@ -105,12 +95,9 @@ body{
     background-color: white;
 }
 
-
-footer{
-    background-color: rgb(0, 0, 0);
-    color:white;
-    padding: 2%;
-    margin-top: 2%;
+.pontapé{
+    background-color: black;
+    color: white;
 }
 
 .menu{
@@ -127,7 +114,7 @@ width: 100%;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     width: 100%;
     height: 100%;
-    
+    color: black;    
 }
 
 .aba_amarela{
@@ -136,21 +123,8 @@ width: 100%;
     max-width: 1200px;
     max-height: 80px;
     margin-left: 50%;
+    margin-right: 2.5%;
     margin-top: 50px;
-}
-
-.botoes_baixo{
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    display: flex;
-    border-radius: 40px;
-    margin-left: 90px;
-}
-
-.button_baixo{
-    background-color: rgb(20, 20, 20);
-    color: white;
 }
 
 
@@ -166,4 +140,10 @@ width: 100%;
     height: 100%;
     width: 150px;
     height: 150px;
+}
+.foot_icon{
+    max-height: 90px;
+    max-width: 90px;
+    padding: 1%;
+    margin-left: 5%;
 }

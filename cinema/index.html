@@ -24,6 +24,11 @@
         function login() {
             window.location.href = "login.html";
         }
+
+        function escuro(){
+            var botao = document.body;
+            botao.classList.toggle("modo_escuro");
+        }
     </script>
 </head>
 
@@ -40,6 +45,8 @@
                     <input class="button" type="button" value="Home" onclick="home()">
                     <input class="button" type="button" value="Comunidade" onclick="comunidade()">
                     <input class="button" type="button" value="Login" onclick="login()">
+                    <img class="botao_de_escuro" src="img/night-mode.png" alt=""type="image" name="botao_escuro" value="" onclick="escuro()" height="50", width="50">
+                    <input class="button" type="image" name="botao_escuro" value="" onclick="escuro()">
                 </div>
             </div>
         </nav> 
@@ -47,27 +54,37 @@
 
 <!--Aba de populares pesquisa da página-->
         <div class="aba_amarela">
-            <div class="aba_busca">POPULARES NESTA SEMANA EM MAUÁ<img src="img/lupa.png" alt="" height="50px" width="50px"></div>
+            <div class="aba_busca">POPULARES NESTA SEMANA EM MAUÁ<img class="lupa" src="img/lupa.png" alt="" height="50px" width="50px"></div>
         </div>
 
         
-<!--CARROSEL É O CIRILO-->>
+<!--CARROSEL É O CIRILO-->
 
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
+  
       <div class="carousel-item active">
-        <img class="d-block w-100" src="img/monkey.avif" alt="First slide">
+        <div class="d-flex justify-content-center">
+          <img class="d-block w-25 mx-2" src="img/monkey.avif" alt="Imagem 1">
+          <img class="d-block w-25 mx-2" src="img/flow.jpg" alt="Imagem 2">
+          <img class="d-block w-25 mx-2" src="img/vitoria.jpg" alt="Imagem 3">
+          <img class="d-block w-25 mx-2" src="img/aindaestouaqui.avif" alt="Imagem 4">
+        </div>
       </div>
+
       <div class="carousel-item">
-        <img class="d-block w-100" src="img/flow.jpg" alt="Second slide">
+        <div class="d-flex justify-content-center">
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=3IVPHxs4NoM" target="_blank"><img src="img/Um_filme_Minecraft.jpg" alt="Imagem 5"></a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=X3o9GyKda1k" target="_blank"><img src="img/Branca_de_neve.jpg" alt="Imagem 5"> </a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=U7JG6FMoEdM" target="_blank"><img src="img/America_Admiravel_mundo_novo.jfif" alt="Imagem 5"><a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=-HF5rHxs6vE" target="_blank"><img src="img/resgate_implacavel.jpg" alt="Imagem 5"> </a>
+
+
+        </div>
       </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="img/vitoria.jpg" alt="Third slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="img/aindaestouaqui.avif" alt="Third slide">
-      </div>
+  
     </div>
+  
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Anterior</span>
@@ -77,34 +94,16 @@
       <span class="sr-only">Próximo</span>
     </a>
   </div>
+  <br>
+  <br>
+  <br>
 
 <br>
-<!--Aba de filmes com os posteres dos filmes-->
-        <div class="menu_filmes">
-            <div class="filmes">
-                <img class="posteres" src="img/monkey.avif" alt="">
-                <img class="posteres" src="img/flow.jpg" alt="">
-                <img class="posteres" src="img/vitoria.jpg" alt="">
-                <img class="posteres" src="img/aindaestouaqui.avif" alt="">
-            </div>
-        </div>
 
-<!--Botões de Sessões e Resenhas (ainda não pronto)-->
-            <div class="botoes_baixo">
-                <input class="button_baixo" type="button" value="RESENHAS">
-                <input class="button_baixo" type="button" value="RESENHAS">
-                <input class="button_baixo" type="button" value="RESENHAS">
-                <input class="button_baixo" type="button" value="RESENHAS">
-                <input class="button_baixo" type="button" value="RESENHAS">
-                <input class="button_baixo" type="button" value="RESENHAS">
-            </div>
+<footer>
+    Desenvolvido pela equipe do João      <img class="foot_icon" src="img/media.png" alt=""> <img src="" alt="">
+</footer>
 
-
-
-
-
-    <h1></h1>
-    <footer>Desenvolvido por mim Bababooey</footer>
     
 </body>
 </html>
