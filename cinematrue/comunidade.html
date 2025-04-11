@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
 
     <script>
+        // Funções de navegação
         function home() {
             window.location.href = "index.html";
         }
@@ -17,11 +18,18 @@
         function login() {
             window.location.href = "login.html";
         }
+
         function showTab(tabId) {
             document.querySelectorAll('.content-section').forEach(tab => tab.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
+        }
+
+        // Função para alternar entre modo escuro e claro
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle("dark-mode");
         }
     </script>
 
@@ -33,11 +41,18 @@
             font-family: Arial, sans-serif;
             background-color: #222;
             color: white;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Estilo do modo escuro */
+        .dark-mode {
+            background-color: #121212;
+            color: white;
         }
         header {
             background-color: #ffcc00;
             color: black;
             padding: 10px 0;
+            position: relative;
         }
         .menu {
             display: flex;
@@ -59,16 +74,7 @@
             margin-bottom: 0;
         }
         .botoes_cima {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .botoes_cima input {
-            padding: 8px 16px;
-            background-color: black;
-            color: white;
-            border: none;
-            border-radius: 4px;
+            display: none; /* Remover os botões da barra amarela */
         }
         .tabs {
             display: flex;
@@ -133,6 +139,30 @@
             border-radius: 8px;
             margin-bottom: 15px;
         }
+
+        .welcome-message {
+            font-family: Arial, sans-serif;
+            color: black;
+            font-size: 1.2em;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Botão de modo escuro */
+        .dark-mode-button {
+            width: 35px;
+            height: 35px;
+            background: url('img/modo_escuro.png') no-repeat center center;
+            background-size: contain;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            right: 20px; /* Corrigir a posição para ele não ficar escondido */
+            top: 50%;
+            transform: translateY(-50%);
+        }
     </style>
 </head>
 <body>
@@ -140,17 +170,13 @@
         <nav class="menu">
             <!-- Container que agrupa o ícone e o título -->
             <div class="logo-container">
-                <img src="img/logo.png" alt="Ícone de Pipoca" class="logo">
+                <img src="img/logo.png" alt="Ícone de Pipoca" type="button" class="logo" onclick="home()">
                 <h1 class="title">CINE FINDER</h1>
             </div>
-            
-            <!-- Botões da parte de cima -->
-            <div class="botoes_cima">
-                <input class="button" type="button" value="Home" onclick="home()">
-                <input class="button" type="button" value="Comunidade" onclick="comunidade()">
-                <input class="button" type="button" value="Login" onclick="login()">
-            </div>
-    
+
+            <!-- Botão para alternar entre modo claro/escuro -->
+            <button class="dark-mode-button" onclick="toggleDarkMode()"></button>
+
             <!-- Mensagem de boas-vindas -->
             <div class="welcome-message">
                 Bem-vindo, Usuário!

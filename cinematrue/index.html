@@ -25,10 +25,34 @@
             window.location.href = "login.html";
         }
 
+        function buscar() {
+            window.location.href = "busca_localizacao.html";
+        }
+
+        window.onload = function () {
+        var botao = document.body;
+        var img = document.getElementById("inverter");
+
+        if (!botao.classList.contains("modo_escuro")) {
+            img.style.filter = "invert(0)";
+        }
+    };
+
         function escuro(){
             var botao = document.body;
             botao.classList.toggle("modo_escuro");
+
+            var img = document.getElementById("inverter");
+            if (botao.classList.contains("modo_escuro")) {
+            img.style.filter = "invert(1)";
+        } else {
+            img.style.filter = "invert(0)";
         }
+
+        }
+
+
+
     </script>
 </head>
 
@@ -38,14 +62,14 @@
     <header>
         <nav class="menu">
             <div>
-                <img class="chacha" src="img/logo.png" alt="" height="150", width="150">
+                <img class="chacha" src="img/logo.png" type="button" alt="" height="150", width="150" onclick="home()">
             </div>
             <div><h1 class="uiui">CINE FINDER</h1>
                 <div class="botoes_cima">
                     <input class="button" type="button" value="Home" onclick="home()">
                     <input class="button" type="button" value="Comunidade" onclick="comunidade()">
                     <input class="button" type="button" value="Login" onclick="login()">
-                    <img class="botao_de_escuro" src="img/night-mode.png" alt=""type="image" name="botao_escuro" value="" onclick="escuro()" height="50", width="50">
+                    <img class="botao_de_escuro" id="inverter" src="img/night-mode.png" alt=""type="image" name="botao_escuro" value="" onclick="escuro()" height="50", width="50">
                     <input class="button" type="image" name="botao_escuro" value="" onclick="escuro()">
                 </div>
             </div>
@@ -54,7 +78,7 @@
 
 <!--Aba de populares pesquisa da página-->
         <div class="aba_amarela">
-            <div class="aba_busca">POPULARES NESTA SEMANA EM MAUÁ<img class="lupa" src="img/lupa.png" alt="" height="50px" width="50px"></div>
+            <div class="aba_busca">POPULARES NESTA SEMANA EM MAUÁ<img class="lupa" src="img/lupa.png" type="button" alt="" height="50px" width="50px" onclick="buscar()"></div>
         </div>
 
         
@@ -65,19 +89,20 @@
   
       <div class="carousel-item active">
         <div class="d-flex justify-content-center">
-          <img class="d-block w-25 mx-2" src="img/monkey.avif" alt="Imagem 1">
-          <img class="d-block w-25 mx-2" src="img/flow.jpg" alt="Imagem 2">
-          <img class="d-block w-25 mx-2" src="img/vitoria.jpg" alt="Imagem 3">
-          <img class="d-block w-25 mx-2" src="img/aindaestouaqui.avif" alt="Imagem 4">
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=EHs_4zZFfYU" target="_blank"><img src="img/monkey.avif" alt="Imagem 1"> </a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=6QTSPE80Mj8" target="_blank"><img src="img/flow.jpg" alt="Imagem 2"> </a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=3Zr6YJ02r5g" target="_blank"><img src="img/vitoria.jpg" alt="Imagem 3"> </a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=_NzqP0jmk3o" target="_blank"><img src="img/aindaestouaqui.avif" alt="Imagem 4"> </a>
+
         </div>
       </div>
 
       <div class="carousel-item">
         <div class="d-flex justify-content-center">
             <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=3IVPHxs4NoM" target="_blank"><img src="img/Um_filme_Minecraft.jpg" alt="Imagem 5"></a>
-            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=X3o9GyKda1k" target="_blank"><img src="img/Branca_de_neve.jpg" alt="Imagem 5"> </a>
-            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=U7JG6FMoEdM" target="_blank"><img src="img/America_Admiravel_mundo_novo.jfif" alt="Imagem 5"><a>
-            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=-HF5rHxs6vE" target="_blank"><img src="img/resgate_implacavel.jpg" alt="Imagem 5"> </a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=X3o9GyKda1k" target="_blank"><img src="img/Branca_de_neve.jpg" alt="Imagem 6"> </a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=U7JG6FMoEdM" target="_blank"><img src="img/America_Admiravel_mundo_novo.jfif" alt="Imagem 7"><a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=-HF5rHxs6vE" target="_blank"><img src="img/resgate_implacavel.jpg" alt="Imagem 8"> </a>
 
 
         </div>
@@ -94,16 +119,9 @@
       <span class="sr-only">Próximo</span>
     </a>
   </div>
-  <br>
-  <br>
-  <br>
-
-<br>
-
-<footer>
-    Desenvolvido pela equipe do João      <img class="foot_icon" src="img/media.png" alt=""> <img src="" alt="">
-</footer>
-
-    
+  <frameset rows="93%,*" noresise frameborder="0">
+    <frame src="index.html" scrolling="yes" name="principal"></frame>
+      <frame src="rodape.html" scrolling="no"></frame>
+  </frameset>
 </body>
 </html>
