@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cine Finder - Login</title>
+  <style>
+    /* RESET BÁSICO */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    html, body {
+      height: 100%;
+      overflow: hidden; /* Impede scroll da página */
+    }
+
+    /* CONTAINER PRINCIPAL */
+    body {
+      position: relative;
+    }
+
+    /* --------------------- */
+    /* BACKGROUND ANIMADO    */
+    /* --------------------- */
+    .bg-row {
+      position: absolute;
+      width: 200%;
+      height: 50%;
+      display: flex;
+    }
+    .bg-row img {
+      width: auto;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Top row (fileira superior) - rola para a esquerda */
+    .bg-top {
+      top: 0;
+      left: 0;
+      animation: scrollLeft 40s linear infinite;
+    }
+
+    /* Bottom row (fileira inferior) - rola para a direita */
+    .bg-bottom {
+      bottom: 0;
+      right: 0;
+      animation: scrollRight 40s linear infinite;
+    }
+
+    /* Animações */
+    @keyframes scrollLeft {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes scrollRight {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(50%); }
+    }
+
+    /* --------------------- */
+    /* OVERLAY AMARELO       */
+    /* --------------------- */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 204, 0, 0.8); /* Amarelo translúcido */
+      z-index: 1; /* Fica acima das fileiras de cartazes */
+    }
+
+    /* --------------------- */
+    /* CONTAINER DE LOGIN    */
+    /* --------------------- */
+    .login-container {
+      position: absolute;
+      z-index: 2; /* Acima do overlay */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      width: 300px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+
+    .login-container h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #222;
+    }
+
+    .login-container label {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #222;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .login-container button:hover {
+      background-color: #444;
+    }
+
+    .login-container p {
+      margin-top: 15px;
+      color: #555;
+    }
+
+    .login-container a {
+      color: #222;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Mensagem de erro */
+    .error-message {
+      color: red;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Fileira superior de cartazes -->
+  <div class="bg-row bg-top">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+  </div>
+
+  <!-- Fileira inferior de cartazes -->
+  <div class="bg-row bg-bottom">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+    <img src="img/monkey.avif" alt="Cartaz 1">
+    <img src="img/flow.jpg" alt="Cartaz 2">
+    <img src="img/vitoria.jpg" alt="Cartaz 3">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
+    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
+    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
+    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
+    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
+  </div>
+
+  <!-- Overlay amarelo translúcido -->
+  <div class="overlay"></div>
+
+  <!-- Caixa de Login -->
+  <div class="login-container">
+    <h1>LOGIN</h1>
+    <div id="error-container"></div>
+    <form id="login-form">
+      <label for="user">Usuário ou e-mail:</label>
+      <input type="text" id="user" name="user" required>
+
+      <label for="password">Senha:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Entrar</button>
+    </form>
+    <p>Ainda não é membro? <a href="#">Cadastre-se!</a></p>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // previne o envio real do formulário
+      // Limpar mensagens anteriores
+      document.getElementById('error-container').innerHTML = '';
+      
+      // Gera um número aleatório entre 0 e 1
+      var chance = Math.random();
+      
+      if(chance < 0.5) {
+        // 50% de chance para mostrar mensagem de erro
+        var errorMsg = document.createElement('p');
+        errorMsg.className = 'error-message';
+        errorMsg.textContent = 'Senha incorreta. Tente novamente.';
+        document.getElementById('error-container').appendChild(errorMsg);
+      } else {
+        // 50% de chance para redirecionar
+        window.location.href = 'comunidade.html';
+      }
+    });
+  </script>
+</body>
+</html>

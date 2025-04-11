@@ -1,0 +1,107 @@
+<!--Informações iniciais necessárias para a página-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery e Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script LANGUAGE="JavaScript">
+        function home() {
+            window.location.href = "index.html";
+        }
+        function comunidade() {
+            window.location.href = "comunidade.html";
+        }        
+        function login() {
+            window.location.href = "login.html";
+        }
+
+        function escuro(){
+            var botao = document.body;
+            botao.classList.toggle("modo_escuro");
+            var img = document.getElementById("inverter");
+        }
+
+
+
+    </script>
+</head>
+
+<!--Corpo da página-->
+<body>
+    <!--Cabeçalho da página com seus botõees-->
+    <header>
+        <nav class="menu">
+            <div>
+                <img class="chacha" src="img/logo.png" alt="" height="150", width="150">
+            </div>
+            <div><h1 class="uiui">CINE FINDER</h1>
+                <div class="botoes_cima">
+                    <input class="button" type="button" value="Home" onclick="home()">
+                    <input class="button" type="button" value="Comunidade" onclick="comunidade()">
+                    <input class="button" type="button" value="Login" onclick="login()">
+                    <img class="botao_de_escuro" id="inverter" src="img/night-mode.png" alt=""type="image" name="botao_escuro" value="" onclick="escuro()" height="50", width="50">
+                    <input class="button" type="image" name="botao_escuro" value="" onclick="escuro()">
+                </div>
+            </div>
+        </nav> 
+    </header>
+
+<!--Aba de populares pesquisa da página-->
+        <div class="aba_amarela">
+            <div class="aba_busca">POPULARES NESTA SEMANA EM MAUÁ<img class="lupa" src="img/lupa.png" alt="" height="50px" width="50px"></div>
+        </div>
+
+        
+<!--CARROSEL É O CIRILO-->
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+  
+      <div class="carousel-item active">
+        <div class="d-flex justify-content-center">
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=EHs_4zZFfYU" target="_blank"><img src="img/monkey.avif" alt="Imagem 1"> </a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=6QTSPE80Mj8" target="_blank"><img src="img/flow.jpg" alt="Imagem 2"> </a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=3Zr6YJ02r5g" target="_blank"><img src="img/vitoria.jpg" alt="Imagem 3"> </a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=_NzqP0jmk3o" target="_blank"><img src="img/aindaestouaqui.avif" alt="Imagem 4"> </a>
+
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="d-flex justify-content-center">
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=3IVPHxs4NoM" target="_blank"><img src="img/Um_filme_Minecraft.jpg" alt="Imagem 5"></a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=X3o9GyKda1k" target="_blank"><img src="img/Branca_de_neve.jpg" alt="Imagem 6"> </a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=U7JG6FMoEdM" target="_blank"><img src="img/America_Admiravel_mundo_novo.jfif" alt="Imagem 7"><a>
+            <a class="d-block w-25 mx-2" href="https://www.youtube.com/watch?v=-HF5rHxs6vE" target="_blank"><img src="img/resgate_implacavel.jpg" alt="Imagem 8"> </a>
+
+
+        </div>
+      </div>
+  
+    </div>
+  
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Próximo</span>
+    </a>
+  </div>
+  <frameset rows="93%,*" noresise frameborder="0">
+    <frame src="index.html" scrolling="yes" name="principal"></frame>
+      <frame src="rodape.html" scrolling="no"></frame>
+  </frameset>
+</body>
+</html>
