@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Usuário Cinéfilo</title>
@@ -7,53 +8,54 @@
     </style>
     <link rel="stylesheet" href="naruto.css">
 </head>
+
 <body>
-    
+
     <form name="frm_cadastro" action="fernando.lima59@fatec.sp.gov.br" method="post" enctype="text/plain">
         <center>
             <font face="Calibri Light"><b>Efetue seu Cadastro Cinematográfico</b></font>
         </center>
 
-     
 
-       
-        <div class="aidilica"> 
-        <fieldset>
-            <legend>Insira seus dados cinematográficos</legend>
-            <p>
-                <label>Nome:</label><br>
-                <input id="caixa" type="text" name="nome" maxlength="60" required><br><br>
 
-                <label>Usuário:</label><br>
-                <input id="caixa" type="text" name="usuario" maxlength="60" required><br><br>
 
-                <label>Crie uma Senha:</label><br>
-                <input id="caixa" type="password" name="senha" maxlength="60" required><br><br>
+        <div class="aidilica">
+            <fieldset>
+                <legend>Insira seus dados cinematográficos</legend>
+                <p>
+                    <label>Nome:</label><br>
+                    <input id="caixa" type="text" name="nome" maxlength="60" required><br><br>
 
-                <label>Data de Nascimento:</label><br>
-                <input id="caixa" type="date" name="data_nascimento" required><br><br>
+                    <label>Usuário:</label><br>
+                    <input id="caixa" type="text" name="usuario" maxlength="60" required><br><br>
 
-                <label>Qual a sua trilogia favorita?</label><br>
-                <input id="caixa" type="text" name="trilogia_favorita" maxlength="100" required><br><br>
+                    <label>Crie uma Senha:</label><br>
+                    <input id="caixa" type="password" name="senha" maxlength="60" required><br><br>
 
-                <label>Selecione a sua idade:</label><br>
-                <input id="caixa" type="number" name="idade" min="1" max="100" required><br><br>
+                    <label>Data de Nascimento:</label><br>
+                    <input id="caixa" type="date" name="data_nascimento" required><br><br>
 
-                <label>Selecione sua rede de Cinema Favorida:</label><br>
-                <select id="caixa" name="rede_cinema" required>
-                    <option value="Arcoplex">Arcoplex</option>
-                    <option value="Centerplex">Centerplex</option>
-                    <option value="Cine A">Cine A</option>
-                    <option value="Cine Araújo">Cine Araújo</option>
-                    <option value="Cinépolis">Cinépolis</option>
-                    <option value="Cinesystem">Cinesystem</option>
-                    <option value="Grupo Cine">Grupo Cine</option>
-                    <option value="Kinoplex">Kinoplex</option>
-                    <option value="UCI">UCI</option>
-                    <option value="Outra">Outra</option>
-                </select><br><br>
+                    <label>Qual a sua trilogia favorita?</label><br>
+                    <input id="caixa" type="text" name="trilogia_favorita" maxlength="100" required><br><br>
 
-                <label>Selecione seu tipo de filme preferido</label>
+                    <label>Selecione a sua idade:</label><br>
+                    <input id="caixa" type="number" name="idade" min="1" max="100" required><br><br>
+
+                    <label>Selecione sua rede de Cinema Favorida:</label><br>
+                    <select id="caixa" name="rede_cinema" required>
+                        <option value="Arcoplex">Arcoplex</option>
+                        <option value="Centerplex">Centerplex</option>
+                        <option value="Cine A">Cine A</option>
+                        <option value="Cine Araújo">Cine Araújo</option>
+                        <option value="Cinépolis">Cinépolis</option>
+                        <option value="Cinesystem">Cinesystem</option>
+                        <option value="Grupo Cine">Grupo Cine</option>
+                        <option value="Kinoplex">Kinoplex</option>
+                        <option value="UCI">UCI</option>
+                        <option value="Outra">Outra</option>
+                    </select><br><br>
+
+                    <label>Selecione seu tipo de filme preferido</label>
                 <ul>
                     <li><input type="checkbox" name="tipo_filme" value="Dublado"> Dublado</li>
                     <li><input type="checkbox" name="tipo_filme" value="Legendado"> Legendado</li>
@@ -62,25 +64,28 @@
                 </ul>
 
                 <label>Informe se você tem necessidades especiais:</label><br>
-                <textarea id="caixa" name="necessidades_especiais" cols="50" rows="10" placeholder="Digite aqui suas Necessidades" required></textarea><br><br>
-            </p>
-        </fieldset>
-  
-        <fieldset class="menu">
-           
-          <br>  <legend>Qual a classificação do último filme que assistiu?</legend>
-            <input type="radio" name="classificacao" value="Livre"> Livre<br>
-            <input type="radio" name="classificacao" value="12 anos"> 12 anos<br>
-            <input type="radio" name="classificacao" value="Só para maiores"> Só para maiores<br>
-        </fieldset>
+                <textarea id="caixa" name="necessidades_especiais" cols="50" rows="10"
+                    placeholder="Digite aqui suas Necessidades" required></textarea><br><br>
+                </p>
+            </fieldset>
 
-        <center>
-            <input id="botao" type="submit" value="ENVIAR">
-            <input id="botao" type="reset" value="LIMPAR"><br>
-            <a href="index.html"><img src="img/logo.png" height="50px" width="50px" alt="Logo"></a>
-        </center>
+            <fieldset class="menu">
 
-    </form> 
-</div>
+                <br>
+                <legend>Qual a classificação do último filme que assistiu?</legend>
+                <input type="radio" name="classificacao" value="Livre"> Livre<br>
+                <input type="radio" name="classificacao" value="12 anos"> 12 anos<br>
+                <input type="radio" name="classificacao" value="Só para maiores"> Só para maiores<br>
+            </fieldset>
+
+            <center>
+                <input id="botao" type="submit" value="ENVIAR">
+                <input id="botao" type="reset" value="LIMPAR"><br>
+                <a href="index.html"><img src="img/logo.png" height="50px" width="50px" alt="Logo"></a>
+            </center>
+
+    </form>
+    </div>
 </body>
+
 </html>

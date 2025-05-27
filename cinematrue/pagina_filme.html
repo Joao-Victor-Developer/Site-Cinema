@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>titulo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <script src="ambiente.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="menu">
+            <div>
+                <img class="chacha" src="img/logo.png" type="button" alt="" height="150" , width="150" onclick="home()">
+            </div>
+            <div>
+                <h1 class="uiui">CINE FINDER</h1>
+                <div class="botoes_cima">
+                    <input class="button" type="button" value="Home" onclick="home()">
+                    <input class="button" type="button" value="Comunidade" onclick="comunidade()">
+                    <input class="button" type="button" value="Login" onclick="login()">
+                    <img class="botao_de_escuro" id="inverter" src="img/night-mode.png" alt="" type="image"
+                        name="botao_escuro" value="" onclick="escuro()" height="50" , width="50">
+                    <input class="button" type="image" name="botao_escuro" value="" onclick="escuro()">
+                </div>
+            </div>
+        </nav>
+    </header>
+    <fieldset id="campo-meio">
+        <!--Divs para cada o que acontecerá em cada um dos filmes escolhidos-->
+        <div id="Nome_do_Filme">Nome</div>
+        <div id="poster-filme"></div>
+        <div id="descricao"></div>
+    </fieldset>
+</body>
+<script>
+    // Função para pegar parâmetro da URL
+    function getParametro(nome) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(nome);
+    }
+
+    const fundo = getParametro('fundo');
+
+    //Opções para o que acontece se escolher algum dos filmes da HomePage
+    if (fundo === '1') {
+        document.body.style.backgroundImage = "url('img/the-monkey-fundo.jpg')";
+        document.title = 'The Monkey'
+    } else if (fundo === '2') {
+        document.body.style.backgroundImage = "url('img/flow-fundo.jpg')";
+        document.title = 'Flow'
+    } else if (fundo === '3') {
+        document.body.style.backgroundImage = "url('img/vitoria-fundo.jpg')";
+        document.title = 'Vitória'
+    }
+    else if (fundo === '4') {
+        document.body.style.backgroundImage = "url('img/ainda-estou-aqui-fundo.png')";
+        document.title = 'Ainda estou Aqui'
+    }
+    else if (fundo === '5') {
+        document.body.style.backgroundImage = "url('img/um-filme-minecraft-fundo.jpg')";
+        document.title = 'Um Filme Minecraft'
+    }
+    else if (fundo === '6') {
+        document.body.style.backgroundImage = "url('img/branca-de-neve-fundo.jpg')";
+        document.title = 'Branca de Neve'
+    }
+    else if (fundo === '7') {
+        document.body.style.backgroundImage = "url('img/capitao-america-admiravel-mundo-novo-fundo.jpg')";
+        document.title = 'Capitão América - Admirável Mundo Novo'
+    }
+    else if (fundo === '8') {
+        document.body.style.backgroundImage = "url('img/resgate-implacavel-fundo.jpg')";
+        document.title = 'Resgate Implacável'
+    }
+    else {
+        // Fundo padrão se nenhum parâmetro for passado
+        document.body.style.backgroundColor = '#ccc';
+    }
+</script>
+</html>
