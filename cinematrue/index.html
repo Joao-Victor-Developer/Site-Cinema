@@ -66,24 +66,23 @@
 
 <body>
     <!--Cabeçalho da página com seus botõees-->
-    <header>
+    <div>
         <nav class="menu">
-            <div>
-                <img class="chacha" src="img/logo.png" type="button" alt="" height="150" , width="150" onclick="home()">
-            </div>
-            <div>
-                <h1 class="uiui">CINE FINDER</h1>
-                <div class="botoes_cima">
-                    <input class="button" type="button" value="Home" onclick="home()">
-                    <input class="button" type="button" value="Comunidade" onclick="comunidade()">
-                    <input class="button" type="button" value="Login" onclick="login()">
-                    <img class="botao_de_escuro" id="inverter" src="img/night-mode.png" alt="" type="image"
-                        name="botao_escuro" value="" onclick="escuro()" height="50" , width="50">
-                    <input class="button" type="image" name="botao_escuro" value="" onclick="escuro()">
-                </div>
-            </div>
-        </nav>
-    </header>
+    <div class="header-bar">
+        <div class="logo-titulo">
+            <img class="chacha" src="img/logo.png" type="button" alt="" onclick="home()">
+            <h1 class="uiui">CINE FINDER</h1>
+        </div>
+        <div class="botoes_cima">
+            <input class="button" type="button" value="Home" onclick="home()">
+            <input class="button" type="button" value="Comunidade" onclick="comunidade()">
+            <input class="button" type="button" value="Login" onclick="login()">
+            <img class="botao_de_escuro" id="inverter" src="img/night-mode.png" alt="" type="image"
+                name="botao_escuro" value="" onclick="escuro()">
+        </div>
+    </div>
+</nav>
+    </div>
 
     <!--Aba de populares pesquisa da página-->
     <div class="aba_amarela">
@@ -100,13 +99,13 @@
             <div class="carousel-item active">
                 <div class="d-flex justify-content-center">
                     <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=1" target="_blank"><img
-                            src="img/monkey.avif" alt="Imagem 1"> </a>
+                            src="img/The-Monkey.jpg" alt="Imagem 1"> </a>
                     <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=2" target="_blank"><img
                             src="img/flow.jpg" alt="Imagem 2"> </a>
                     <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=3" target="_blank"><img
                             src="img/vitoria.jpg" alt="Imagem 3"> </a>
                     <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=4" target="_blank"><img
-                            src="img/aindaestouaqui.avif" alt="Imagem 4"> </a>
+                            src="img/aindaestouaqui (2).jpg" alt="Imagem 4"> </a>
 
                 </div>
             </div>
@@ -118,16 +117,14 @@
                     <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=6" target="_blank"><img
                             src="img/Branca_de_neve.jpg" alt="Imagem 6"> </a>
                     <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=7" target="_blank"><img
-                            src="img/America_Admiravel_mundo_novo.jfif" alt="Imagem 7"><a>
+                            src="img/America_Admiravel_mundo_novo.jpg" alt="Imagem 7"><a>
                             <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=8" target="_blank"><img
                                     src="img/resgate_implacavel.jpg" alt="Imagem 8"> </a>
 
 
                 </div>
             </div>
-
         </div>
-
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Anterior</span>
@@ -142,5 +139,4 @@
         <frame src="rodape.html" scrolling="no"></frame>
     </frameset>
 </body>
-
 </html>
