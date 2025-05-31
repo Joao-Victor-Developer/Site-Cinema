@@ -1,328 +1,186 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cine Finder - Comunidade</title>
-    <link rel="stylesheet" href="estilo.css">
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="estilo.css" />
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
 
     <script>
-        // Funções de navegação
-        function home() {
-            window.location.href = "index.html";
-        }
-        function comunidade() {
-            window.location.href = "comunidade.html";
-        }
-        function login() {
-            window.location.href = "login.html";
-        }
+      // Funções de navegação
+      function home() {
+        window.location.href = "index.html";
+      }
+      function comunidade() {
+        window.location.href = "comunidade.html";
+      }
+      function login() {
+        window.location.href = "login.html";
+      }
 
-        function showTab(tabId) {
-            document.querySelectorAll('.content-section').forEach(tab => tab.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
-        }
-
-        // Função para alternar entre modo escuro e claro
-        function toggleDarkMode() {
-            const body = document.body;
-            body.classList.toggle("dark-mode");
-        }
+      // Função para alternar entre modo escuro e claro
+      function toggleDarkMode() {
+        const body = document.body;
+        body.classList.toggle("dark-mode");
+      }
     </script>
 
     <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #222;
-            color: white;
-            transition: background-color 0.3s, color 0.3s;
-        }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #222;
+        color: white;
+        transition: background-color 0.3s, color 0.3s;
+      }
 
-        /* Estilo do modo escuro */
-        .dark-mode {
-            background-color: #121212;
-            color: white;
-        }
+      /* Estilo do modo escuro */
+      .dark-mode {
+        background-color: #121212;
+        color: white;
+      }
 
-        header {
-            background-color: #ffcc00;
-            color: black;
-            padding: 10px 0;
-            position: relative;
-        }
+      header {
+        background-color: #ffcc00;
+        color: black;
+        padding: 10px 0;
+        position: relative;
+      }
 
-        .menu {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            flex-wrap: wrap;
-        }
+      .menu {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
 
-        .menu img {
-            height: 70px;
-            width: 70px;
-        }
+      .title {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-size: 2em;
+        margin-left: 15px;
+        color: black;
+        white-space: nowrap;
+        margin-bottom: 0;
+      }
 
-        .uiui {
-            font-family: 'Impact', sans-serif;
-            font-size: 2em;
-            margin-left: 15px;
-            color: black;
-            white-space: nowrap;
-            margin-bottom: 0;
-        }
+      .voltar-btn {
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+      }
 
-        .botoes_cima {
-            display: none;
-            /* Remover os botões da barra amarela */
-        }
+      /* Botão de modo escuro */
+      .dark-mode-button {
+        width: 35px;
+        height: 35px;
+        background: url("img/modo_escuro.png") no-repeat center center;
+        background-size: contain;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        /* Corrigir a posição para ele não ficar escondido */
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .categorias img {
+        min-width: 10%;
+        max-width: 100%;
+        min-height: 100%;
+        min-height: 10%;
+        margin-top: 5%;
+        border-radius: 5%;
+      }
 
-        .tabs {
-            display: flex;
-            justify-content: start;
-            padding: 20px;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+      .categorias {
+        display: flex;
+        flex-wrap: wrap; /* Permite que as categorias se ajustem se não couberem na tela */
+        justify-content: center; /* Centraliza os itens na linha */
+        gap: 10px; /* Adiciona espaçamento entre as categorias */
+        margin-top: 5%;
+      }
 
-        .tab-button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #000;
-            color: #fff;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .tab-button.active {
-            background-color: #444;
-        }
-
-        .voltar-btn {
-            background-color: black;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-        }
-
-        .main-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px;
-            flex: 1;
-            min-height: 70vh;
-        }
-
-        .sidebar {
-            background-color: #333;
-            padding: 20px;
-            border-radius: 8px;
-            flex: 1;
-            min-width: 250px;
-            height: fit-content;
-        }
-
-        .content-area {
-            flex: 3;
-            min-width: 300px;
-        }
-
-        .content-section {
-            display: none;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        .scrollable-posts {
-            max-height: 70vh;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-
-        .post {
-            background-color: #444;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        .welcome-message {
-            font-family: Arial, sans-serif;
-            color: black;
-            font-size: 1.2em;
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        /* Botão de modo escuro */
-        .dark-mode-button {
-            width: 35px;
-            height: 35px;
-            background: url('img/modo_escuro.png') no-repeat center center;
-            background-size: contain;
-            border: none;
-            cursor: pointer;
-            position: absolute;
-            right: 20px;
-            /* Corrigir a posição para ele não ficar escondido */
-            top: 50%;
-            transform: translateY(-50%);
-        }
+      .categoria-botao {
+        background-color: #444;
+        border-radius: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        color: white;
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        font-size: larger;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav class="menu">
-            <!-- Container que agrupa o ícone e o título -->
-            <div class="logo-container">
-                <img src="img/logo.png" alt="Ícone de Pipoca" type="button" class="logo" onclick="home()">
-                <h1 class="title">CINE FINDER</h1>
-            </div>
-
-            <!-- Botão para alternar entre modo claro/escuro -->
-            <button class="dark-mode-button" onclick="toggleDarkMode()"></button>
-
-            <!-- Mensagem de boas-vindas -->
-            <div class="welcome-message">
-                Bem-vindo, Usuário!
-            </div>
-        </nav>
+      <!-- Container que agrupa o ícone e o título -->
+      <div class="logo-container">
+        <img
+          src="img/logo.png"
+          alt="Ícone de Pipoca"
+          type="button"
+          class="logo"
+          onclick="home()"
+        />
+        <h1 class="title">CINE FINDER</h1>
+      </div>
     </header>
 
-    <div class="tabs">
-        <button class="tab-button active" onclick="showTab('comunidade')">Comunidade</button>
-        <button class="tab-button" onclick="showTab('resenhas')">Resenhas</button>
-        <button class="voltar-btn" onclick="home()">Voltar ao Início</button>
-    </div>
-
     <div class="main-content">
-        <div class="sidebar">
-            <h5>Usuários Ativos</h5>
-            <ul>
-                <li>@cinemania</li>
-                <li>@paulofilmes</li>
-                <li>@mariadoração</li>
-                <li>@sessãodobairro</li>
-            </ul>
-        </div>
-
-        <div class="content-area">
-            <div id="comunidade" class="content-section active">
-                <div class="scrollable-posts">
-                    <div class="post">
-                        <strong>@cinemania:</strong>
-                        <p>Alguém mais ficou de cara com o final de "Vitória em Dobro"? Eu esperava outra coisa 😅</p>
-                        <p><strong>Respostas:</strong></p>
-                        <ul>
-                            <li>@filmeiro: Também achei! Me pegou de surpresa!</li>
-                            <li>@sofaeacoberta: Esse filme virou tudo do nada kkk</li>
-                            <li>@joaninha: Não entendi nada daquele final rs</li>
-                        </ul>
-                    </div>
-                    <div class="post">
-                        <strong>@mariadoração:</strong>
-                        <p>Assisti "Ainda Estou Aqui" ontem e chorei do começo ao fim. É um filme necessário!</p>
-                        <p><strong>Respostas:</strong></p>
-                        <ul>
-                            <li>@livia_cine: Sim! História muito tocante.</li>
-                            <li>@clarafilmes: A trilha sonora também foi lindíssima.</li>
-                            <li>@cineminha: Me destruiu por dentro, mas valeu muito a pena.</li>
-                        </ul>
-                    </div>
-                    <div class="post">
-                        <strong>@paulofilmes:</strong>
-                        <p>Qual a opinião de vocês sobre o remake de "Os Bons Companheiros"?</p>
-                        <p><strong>Respostas:</strong></p>
-                        <ul>
-                            <li>@cineclube: Nada supera o original, mas não foi ruim.</li>
-                            <li>@nostalgico: Falta o charme dos anos 90, mas gostei!</li>
-                            <li>@debatefilmes: Achei desnecessário, mas tecnicamente impecável.</li>
-                        </ul>
-                    </div>
-                    <div class="post">
-                        <strong>@sessãodobairro:</strong>
-                        <p>Revi "O Fabuloso Destino de Amélie Poulain". Continua perfeito!</p>
-                        <p><strong>Respostas:</strong></p>
-                        <ul>
-                            <li>@visualarte: A fotografia desse filme é um sonho.</li>
-                            <li>@retrolover: Um dos meus favoritos de todos os tempos.</li>
-                            <li>@trilhasonora: E aquela música tema? Arrepiante.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div id="resenhas" class="content-section">
-                <div class="reviews-container">
-                    <div class="review-post">
-                        <div class="review-poster">
-                            <img src="img/monkey.avif" alt="Monkey Man">
-                        </div>
-                        <div class="review-content">
-                            <h3>Monkey Man</h3>
-                            <p class="review-rating">★★★★☆</p>
-                            <p class="review-text">Uma narrativa surpreendente, com reviravoltas que deixam você grudado
-                                na tela. Os efeitos especiais são de tirar o fôlego!</p>
-                            <p><em>- @cinemania</em></p>
-                        </div>
-                    </div>
-                    <div class="review-post">
-                        <div class="review-poster">
-                            <img src="img/flow.jpg" alt="Flow">
-                        </div>
-                        <div class="review-content">
-                            <h3>Flow</h3>
-                            <p class="review-rating">★★★☆☆</p>
-                            <p class="review-text">A direção é competente, mas o enredo peca na profundidade. Recomendo
-                                para quem busca algo leve e sem complicações.</p>
-                            <p><em>- @paulofilmes</em></p>
-                        </div>
-                    </div>
-                    <div class="review-post">
-                        <div class="review-poster">
-                            <img src="img/vitoria.jpg" alt="Vitória em Dobro">
-                        </div>
-                        <div class="review-content">
-                            <h3>Vitória em Dobro</h3>
-                            <p class="review-rating">★★★★★</p>
-                            <p class="review-text">Um clássico moderno que entrega uma experiência cinematográfica
-                                completa, com atuações marcantes e uma história emocionante.</p>
-                            <p><em>- @mariadoração</em></p>
-                        </div>
-                    </div>
-                    <div class="review-post">
-                        <div class="review-poster">
-                            <img src="img/aindaestouaqui.avif" alt="Ainda Estou Aqui">
-                        </div>
-                        <div class="review-content">
-                            <h3>Ainda Estou Aqui</h3>
-                            <p class="review-rating">★★★☆☆</p>
-                            <p class="review-text">Uma proposta ousada, mas que peca em alguns momentos por ser
-                                inconsistente. A estética compensa, mas o enredo deixa a desejar.</p>
-                            <p><em>- @sessãodobairro</em></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="categorias">
+        <button class="categoria-botao">
+          <div id="Acao_e_Aventura">
+            <img src="img/Acao-icone.jpg" alt="" />
+            <p>Ação e Aventura</p>
+          </div>
+        </button>
+        <button class="categoria-botao">
+          <div id="Comedia">
+            <img src="img/comedia-icone.jpg" />
+            <p>Comédia</p>
+          </div>
+        </button>
+        <button class="categoria-botao">
+          <div id="Terror">
+            <img src="img/terror-icone.jpg" />
+            <p>Terror</p>
+          </div>
+        </button>
+        <button class="categoria-botao">
+          <div id="Ficcao_Cientifica">
+            <img src="img/ficcao-cientifica-icone.jpg" />
+            <p>Ficção Científica</p>
+          </div>
+        </button>
+        <button class="categoria-botao">
+          <div id="Documentario">
+            <img src="img/documentario-icone.jpg" />
+            <p>Documentário</p>
+          </div>
+        </button>
+        <button class="categoria-botao">
+          <div id="Romance">
+            <img src="img/romance-icone.jpg" />
+            <p>Romance</p>
+          </div>
+        </button>
+        <button class="categoria-botao">
+          <div id="Mistério">
+            <img src="img/misterio-icone.jpg" />
+            <p>Mistério</p>
+          </div>
+        </button>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
