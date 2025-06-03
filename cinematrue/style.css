@@ -1,6 +1,7 @@
 .modo_escuro{
     background-color: rgb(15, 15, 15);
     color: aliceblue;
+    transition: 0.3s ease-in-out; /* Transição suave para o modo escuro */
 }
 
 .carousel {

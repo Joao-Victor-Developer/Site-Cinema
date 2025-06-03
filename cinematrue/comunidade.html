@@ -5,26 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cine Finder - Comunidade</title>
     <link rel="stylesheet" href="estilo.css" />
+    <script src="ambiente.js"></script>
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
-
-    <script>
-      // Funções de navegação
-      function home() {
-        window.location.href = "index.html";
-      }
-      function comunidade() {
-        window.location.href = "comunidade.html";
-      }
-      function login() {
-        window.location.href = "login.html";
-      }
-
-      // Função para alternar entre modo escuro e claro
-      function toggleDarkMode() {
-        const body = document.body;
-        body.classList.toggle("dark-mode");
-      }
-    </script>
 
     <style>
       html,
@@ -36,12 +18,6 @@
         background-color: #222;
         color: white;
         transition: background-color 0.3s, color 0.3s;
-      }
-
-      /* Estilo do modo escuro */
-      .dark-mode {
-        background-color: #121212;
-        color: white;
       }
 
       header {
@@ -75,20 +51,6 @@
         font-size: 12px;
       }
 
-      /* Botão de modo escuro */
-      .dark-mode-button {
-        width: 35px;
-        height: 35px;
-        background: url("img/modo_escuro.png") no-repeat center center;
-        background-size: contain;
-        border: none;
-        cursor: pointer;
-        position: absolute;
-        right: 20px;
-        /* Corrigir a posição para ele não ficar escondido */
-        top: 50%;
-        transform: translateY(-50%);
-      }
       .categorias img {
         min-width: 10%;
         max-width: 100%;
@@ -96,6 +58,14 @@
         min-height: 10%;
         margin-top: 5%;
         border-radius: 5%;
+      }
+
+      .logo-img {
+        width: 10vw; /* Responsivo à largura da tela */
+        min-width: 40px; /* Tamanho mínimo para não sumir */
+        max-width: 150px; /* Tamanho máximo */
+        height: auto; /* Mantém proporção */
+        display: block;
       }
 
       .categorias {
@@ -106,17 +76,36 @@
         margin-top: 5%;
       }
 
-      .categoria-botao {
-        background-color: #444;
-        border-radius: 5%;
+      
+
+      .categoria-botao:hover .flip {
+        transform: rotateY(180deg);
+      }
+
+      .flip {
+        width: 100%;
+        height: 100%;
+        perspective: 1000px;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        position: relative;
+      }
+
+      .frente,
+      .verso {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        font-size: x-large;
+      }
+
+      .verso {
+        transform: rotateY(180deg);
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        text-align: center;
-        flex-direction: column;
-        color: white;
-        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-        font-size: larger;
       }
     </style>
   </head>
@@ -126,6 +115,7 @@
       <!-- Container que agrupa o ícone e o título -->
       <div class="logo-container">
         <img
+          class="logo-img"
           src="img/logo.png"
           alt="Ícone de Pipoca"
           type="button"
@@ -134,52 +124,142 @@
         />
         <h1 class="title">CINE FINDER</h1>
       </div>
+      <div class="fundo-branco"></div>
     </header>
 
     <div class="main-content">
+
       <div class="categorias">
+
+        <div id="Acao-e-Aventura">
         <button class="categoria-botao">
-          <div id="Acao_e_Aventura">
-            <img src="img/Acao-icone.jpg" alt="" />
-            <p>Ação e Aventura</p>
-          </div>
+          <div class="flip">
+            <div class="frente">
+              <img src="img/Acao-icone.jpg" alt="" />
+              <p>Ação e Aventura</p>
+            </div>
+            <div class="verso">
+              <p>
+                Gosta de filmes que possuem cenas que te deixem empolgado(a)?
+                Venha conversar aqui!
+                <p>"Com grandes poderes, vem grandes responsabilidades..."</p>
+                <p>-Tio Ben (Homem-Aranha)</p>
+              </p>
+            </div>
+            </div>
         </button>
+        </div>
+
+        <div id="Comedia">
         <button class="categoria-botao">
-          <div id="Comedia">
-            <img src="img/comedia-icone.jpg" />
-            <p>Comédia</p>
-          </div>
-        </button>
-        <button class="categoria-botao">
-          <div id="Terror">
+
+          <div class="flip">
+            <div class="frente">
+                <img src="img/comedia-icone.jpg" />
+                <p>Comédia</p>
+              </div>
+            <div class="verso">
+              <p>
+                Gosta de rir e se divertir com filmes engraçados? Venha
+                compartilhar suas risadas aqui!
+                <p>"Acho que sou um herói, o Super Trouxa."</p>
+                <p>-Chris Rock (Todo mundo odeia o Chris)</p>
+              </p>
+            </div>
+            </div>
+          </button>
+        </div>
+
+
+        <div id="Terror">
+          <button class="categoria-botao">
+        <div class="flip">
+            <div class="frente">
             <img src="img/terror-icone.jpg" />
             <p>Terror</p>
-          </div>
+            </div>
+            <div class="verso">
+              <p>
+                Gosta de sentir aquele frio na barriga com filmes de terror?
+                Venha compartilhar seus medos e sustos aqui!
+                <p>"HERE'S JOHNNY!"</p>
+                <p>-Jack Torrance (O iluminado)</p>
+              </p>
         </button>
+        </div>
+
+
+        <div id="Ficcao_Cientifica">
         <button class="categoria-botao">
-          <div id="Ficcao_Cientifica">
+          <div class="flip">
+            <div class="frente">
             <img src="img/ficcao-cientifica-icone.jpg" />
             <p>Ficção Científica</p>
-          </div>
+            </div>
+            <div class="verso">
+              <p>
+                Gosta de explorar o desconhecido e viajar por mundos futuristas?
+                Venha discutir suas teorias e descobertas aqui!
+                <p>"Great Scott!"</p>
+                <p>-Dr. Emmett Brown (De volta para o futuro)</p>
+              </p>
+
         </button>
+        </div>
+
+        <div id="Documentario">
         <button class="categoria-botao">
-          <div id="Documentario">
+          <div class="flip">
+            <div class="frente">
             <img src="img/documentario-icone.jpg" />
             <p>Documentário</p>
           </div>
+            <div class="verso">
+              <p>
+                Gosta de aprender e se informar sobre o mundo? Venha compartilhar
+                suas descobertas e reflexões aqui!
+                <p>"Em algum lugar, algo incrível está esperando para ser descoberto"</p>
+                <p>-Carl Sagan</p>
+              </p>
+            </div>
         </button>
+        </div>
+
+        <div id="Romance">
         <button class="categoria-botao">
-          <div id="Romance">
+          <div class="flip">
+            <div class="frente">
             <img src="img/romance-icone.jpg" />
             <p>Romance</p>
+            </div>
+            <div class="verso">
+              <p>
+                Gosta de histórias de amor que aquecem o coração? Venha compartilhar
+                suas paixões e emoções aqui!
+                <p>"Sabe o que mais gostei no dia de hoje? É que eu tive
+                  a chance de me apaixonar por você mais uma vez"</p>
+                <p>-Shrek (Shrek para sempre)</p>
+              </p>
           </div>
         </button>
+        </div>
+
+        <div id="Mistério">
         <button class="categoria-botao">
-          <div id="Mistério">
+          <div class="flip">
+            <div class="frente">
             <img src="img/misterio-icone.jpg" />
             <p>Mistério</p>
           </div>
+          <div class="verso">
+            <p>
+              Gosta de desvendar enigmas e mistérios intrigantes? Venha compartilhar
+              suas teorias e investigações aqui!
+              <p>"A verdade está lá fora"</p>
+              <p>-Fox Mulder (Arquivo X)</p>
+            </p>
         </button>
+        </div>
       </div>
     </div>
   </body>
