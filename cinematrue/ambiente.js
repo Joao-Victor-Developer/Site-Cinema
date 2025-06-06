@@ -37,3 +37,18 @@ function home() {
             }
 
         }
+
+window.onload = function () {
+    const mensagensdiv = document.getElementsByClassName('mensagens')[0];
+    const mensagem = document.getElementById('input-mensagem');
+    const agora = new Date()
+    const Tempo = agora.toLocaleString
+
+    window.EnviarMensagem = function () {
+        const div = document.createElement('div');
+        div.textContent = mensagem.value // Mais seguro que innerHTML
+        mensagensdiv.appendChild(div);
+        mensagensdiv.scrollTop = mensagensdiv.scrollHeight;
+        mensagem.value = ''; // Limpa o input após envio
+    };
+};
