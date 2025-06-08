@@ -1,6 +1,5 @@
 # Cine Finder
 Fatec Desenvolvimento web !
-Site Absolute Cinema para ganhar dinheiro e vender para empresas, custou 50 mil dólares para ser produzido.
 🎬 Cine Finder
 Cine Finder é uma aplicação web desenvolvida para facilitar a busca e descoberta de filmes, séries e informações relacionadas ao universo cinematográfico. Utilizando APIs modernas e uma interface intuitiva, o projeto visa oferecer aos usuários uma experiência fluida, precisa e visualmente agradável para explorar o mundo do entretenimento audiovisual.
 
@@ -113,7 +112,10 @@ Nome: Ivan Junior
 E-mail: 13ivanvitorinojunior@gmail.com
 GitHub: https://github.com/Iv4n-Jr
 
+O projeto em si possui fins educacionais, portanto, reconhecemos que há imagens que podem incluir direitos autorais.
+
 Se você leu até aqui, parabéns. Seu tempo de atenção é maior do que a média da população. E, como diria eu mesmo: "Não há nada mais recompensador do que um código bem estruturado... exceto talvez uma rotina rigidamente seguida."
 
-Bazinga!
 
+
+Bazinga!

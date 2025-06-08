@@ -1,27 +1,37 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Usuário Cinéfilo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         @import url("estilo.css");
+        .aidilica {
+        display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza conteúdo interno */
+    max-width: 500px;    /* Limita a largura máxima */
+    width: 100%;         /* Ocupa toda a largura disponível até o máximo */
+    padding: 24px;       /* Espaçamento interno */
+    box-sizing: border-box; /* Inclui o padding na largura */
+    background: #fff;    /* Opcional: fundo branco para destaque */
+    border-radius: 8px;  /* Opcional: cantos arredondados */
+    background-color: rgb(239, 183, 24);
+        }
+        body {
+        display: flex;
+
+        }
+        form {
+        margin: 0 auto;
+    }
     </style>
-    <link rel="stylesheet" href="naruto.css">
 </head>
-
 <body>
-
     <form name="frm_cadastro" action="fernando.lima59@fatec.sp.gov.br" method="post" enctype="text/plain">
-        <center>
-            <font face="Calibri Light"><b>Efetue seu Cadastro Cinematográfico</b></font>
-        </center>
-
-
-
-
         <div class="aidilica">
             <fieldset>
-                <legend>Insira seus dados cinematográficos</legend>
+                <legend><h2>Insira seus dados cinematográficos</h2></legend>
                 <p>
                     <label>Nome:</label><br>
                     <input id="caixa" type="text" name="nome" maxlength="60" required><br><br>
@@ -78,14 +88,13 @@
                 <input type="radio" name="classificacao" value="Só para maiores"> Só para maiores<br>
             </fieldset>
 
-            <center>
-                <input id="botao" type="submit" value="ENVIAR">
-                <input id="botao" type="reset" value="LIMPAR"><br>
-                <a href="index.html"><img src="img/logo.png" height="50px" width="50px" alt="Logo"></a>
-            </center>
-
+            <div style="text-align:center;">
+    <input id="botao" type="submit" value="ENVIAR">
+    <input id="botao" type="reset" value="LIMPAR"><br>
+    <a href="index.html"><img src="img/logo.png" height="50px" width="50px" alt="Logo"></a>
+</div>
+        </div>
     </form>
     </div>
 </body>
-
 </html>
