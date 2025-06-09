@@ -1,0 +1,26 @@
+.aidilica{
+    align-items: center;
+    font-size: medium;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 40px;
+    width: 40px;
+    margin-left: 690px;
+}
+.menu{
+    align-items: center;
+    font-size: medium;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100px;
+    width: 400px;
+    margin-left: 0px;
+}
+h1{
+    margin-top: 10px;
+}
+input{
+    margin-top: 10px;
+}
+legend{
+    margin-top: 40px;
+    height: 40px;
+}
