@@ -1,234 +1,194 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cine Finder - Login</title>
+  <meta charset="UTF-8">
+  <title>Login</title>
   <style>
-    /* RESET BÁSICO */
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
-    html, body {
-      height: 100%;
-      overflow: hidden; /* Impede scroll da página */
-    }
 
-    /* CONTAINER PRINCIPAL */
-    body {
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
       position: relative;
     }
 
-    /* --------------------- */
-    /* BACKGROUND ANIMADO    */
-    /* --------------------- */
     .bg-row {
       position: absolute;
       width: 200%;
       height: 50%;
       display: flex;
-    }
-    .bg-row img {
-      width: auto;
-      height: 100%;
-      object-fit: cover;
+      z-index: 0;
     }
 
-    /* Top row (fileira superior) - rola para a esquerda */
     .bg-top {
       top: 0;
       left: 0;
       animation: scrollLeft 40s linear infinite;
     }
 
-    /* Bottom row (fileira inferior) - rola para a direita */
     .bg-bottom {
       bottom: 0;
       right: 0;
       animation: scrollRight 40s linear infinite;
     }
 
-    /* Animações */
+    .bg-row img {
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
     @keyframes scrollLeft {
-      0%   { transform: translateX(0); }
+      0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+
     @keyframes scrollRight {
-      0%   { transform: translateX(0); }
+      0% { transform: translateX(0); }
       100% { transform: translateX(50%); }
     }
 
-    /* --------------------- */
-    /* OVERLAY AMARELO       */
-    /* --------------------- */
-    .overlay {
+    .form-container {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 204, 0, 0.8); /* Amarelo translúcido */
-      z-index: 1; /* Fica acima das fileiras de cartazes */
-    }
-
-    /* --------------------- */
-    /* CONTAINER DE LOGIN    */
-    /* --------------------- */
-    .login-container {
-      position: absolute;
-      z-index: 2; /* Acima do overlay */
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 8px;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
       width: 300px;
-      padding: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
       text-align: center;
     }
 
-    .login-container h1 {
-      margin-bottom: 20px;
-      font-size: 24px;
+    .form-container h2 {
+      margin-bottom: 25px;
+      font-size: 26px;
       color: #222;
     }
 
-    .login-container label {
-      display: block;
-      text-align: left;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
+    .form-container input {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin-bottom: 15px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
+      border: 1px solid #999;
+      border-radius: 6px;
       font-size: 14px;
+      transition: border 0.3s;
     }
 
-    .login-container button {
+    .form-container input:focus {
+      border-color: #222;
+      outline: none;
+    }
+
+    .form-container button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background-color: #222;
       color: #fff;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
       cursor: pointer;
-      font-size: 16px;
+      transition: background 0.3s;
     }
 
-    .login-container button:hover {
+    .form-container button:hover {
       background-color: #444;
     }
 
-    .login-container p {
-      margin-top: 15px;
-      color: #555;
+    .form-container p {
+      margin-top: 10px;
+      font-size: 13px;
     }
 
-    .login-container a {
-      color: #222;
+    .form-container a {
+      color: #007bff;
       text-decoration: none;
-      font-weight: bold;
     }
 
-    /* Mensagem de erro */
-    .error-message {
+    .form-container a:hover {
+      text-decoration: underline;
+    }
+
+    #msg {
       color: red;
-      margin-bottom: 10px;
-      font-weight: bold;
+      font-size: 13px;
+      margin-top: 8px;
     }
   </style>
 </head>
 <body>
-  <!-- Fileira superior de cartazes -->
-  <div class="bg-row bg-top">
-    <img src="img/monkey.avif" alt="Cartaz 1">
-    <img src="img/flow.jpg" alt="Cartaz 2">
-    <img src="img/vitoria.jpg" alt="Cartaz 3">
-    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
-    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
-    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
-    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
-    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
-    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
-    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
-    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
-    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
-    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
-    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
-    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
-    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
-  </div>
+  <div class="bg-row bg-top" id="top-row"></div>
+  <div class="bg-row bg-bottom" id="bottom-row"></div>
 
-  <!-- Fileira inferior de cartazes -->
-  <div class="bg-row bg-bottom">
-    <img src="img/monkey.avif" alt="Cartaz 1">
-    <img src="img/flow.jpg" alt="Cartaz 2">
-    <img src="img/vitoria.jpg" alt="Cartaz 3">
-    <img src="img/aindaestouaqui.avif" alt="Cartaz 4">
-    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
-    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
-    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
-    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
-    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
-    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
-    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
-    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
-    <img src="img/monkey.avif" alt="Cartaz 1 repetido">
-    <img src="img/flow.jpg" alt="Cartaz 2 repetido">
-    <img src="img/vitoria.jpg" alt="Cartaz 3 repetido">
-    <img src="img/aindaestouaqui.avif" alt="Cartaz 4 repetido">
-  </div>
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(252, 227, 0, 0.547); z-index: 5; pointer-events: none;"></div>
 
-  <!-- Overlay amarelo translúcido -->
-  <div class="overlay"></div>
-
-  <!-- Caixa de Login -->
-  <div class="login-container">
-    <h1>LOGIN</h1>
-    <div id="error-container"></div>
-    <form id="login-form">
-      <label for="user">Usuário ou e-mail:</label>
-      <input type="text" id="user" name="user" required>
-
-      <label for="password">Senha:</label>
-      <input type="password" id="password" name="password" required>
-
-      <button type="submit">Entrar</button>
-    </form>
-    <p>Ainda não é membro? <a href="cadastro.html">Cadastre-se!</a></p>
+  <div class="form-container">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="E-mail">
+    <input type="password" id="password" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+    <p id="msg"></p>
+    <p>Não tem conta? <a href="cadastro.html">Faça o cadastro</a></p>
   </div>
 
   <script>
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // previne o envio real do formulário
-      // Limpar mensagens anteriores
-      document.getElementById('error-container').innerHTML = '';
-      
-      // Gera um número aleatório entre 0 e 1
-      var chance = Math.random();
-      
-      if(chance < 0.5) {
-        // 50% de chance para mostrar mensagem de erro
-        var errorMsg = document.createElement('p');
-        errorMsg.className = 'error-message';
-        errorMsg.textContent = 'Senha incorreta. Tente novamente.';
-        document.getElementById('error-container').appendChild(errorMsg);
-      } else {
-        // 50% de chance para redirecionar
-        window.location.href = 'comunidade.html';
+    const posters = [
+      "img/monkey.avif",
+      "img/flow.jpg",
+      "img/vitoria.jpg",
+      "img/aindaestouaqui.avif"
+    ];
+
+    function gerarFileira(id, direcao = 'normal', repeticoes = 10) {
+      const container = document.getElementById(id);
+      for (let i = 0; i < repeticoes; i++) {
+        for (let poster of posters) {
+          const img = document.createElement('img');
+          img.src = poster;
+          img.alt = `Cartaz ${poster}`;
+          container.appendChild(img);
+        }
       }
-    });
+    }
+
+    gerarFileira("top-row", "esquerda", 4);
+    gerarFileira("bottom-row", "direita", 4);
+
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzlXeR5ddp-gwX5p_y_dYabuOzcJCsN7pNT1hbytzxDtDVJVwZ9Fsaq7nwVeXgrtZC7/exec";
+
+    function login() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      fetch(scriptURL, {
+        method: "POST",
+        body: new URLSearchParams({
+          action: "login",
+          email,
+          password,
+        }),
+      })
+      .then(res => res.text())
+      .then(data => {
+        if (data === "logado") {
+          window.alert("Login realizado com sucesso!");
+          window.location.href = "index.html";
+        } else {
+          document.getElementById("msg").innerText = "Email ou senha incorretos.";
+        }
+      });
+    }
   </script>
 </body>
 </html>

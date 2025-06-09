@@ -1,100 +1,200 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Cadastro de Usuário Cinéfilo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        @import url("estilo.css");
-        .aidilica {
-        display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza conteúdo interno */
-    max-width: 500px;    /* Limita a largura máxima */
-    width: 100%;         /* Ocupa toda a largura disponível até o máximo */
-    padding: 24px;       /* Espaçamento interno */
-    box-sizing: border-box; /* Inclui o padding na largura */
-    background: #fff;    /* Opcional: fundo branco para destaque */
-    border-radius: 8px;  /* Opcional: cantos arredondados */
-    background-color: rgb(239, 183, 24);
-        }
-        body {
-        display: flex;
-
-        }
-        form {
-        margin: 0 auto;
+  <meta charset="UTF-8">
+  <title>Cadastro de Usuário</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
     }
-    </style>
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
+      position: relative;
+    }
+
+    .bg-row {
+      position: absolute;
+      width: 200%;
+      height: 50%;
+      display: flex;
+      z-index: 0;
+    }
+
+    .bg-top {
+      top: 0;
+      left: 0;
+      animation: scrollLeft 40s linear infinite;
+    }
+
+    .bg-bottom {
+      bottom: 0;
+      right: 0;
+      animation: scrollRight 40s linear infinite;
+    }
+
+    .bg-row img {
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
+    @keyframes scrollLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes scrollRight {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(50%); }
+    }
+
+    .form-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+      width: 300px;
+      text-align: center;
+    }
+
+    .form-container h2 {
+      margin-bottom: 25px;
+      font-size: 26px;
+      color: #222;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #999;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #222;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #444;
+    }
+
+    .form-container p {
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .form-container a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .form-container a:hover {
+      text-decoration: underline;
+    }
+
+    #msg {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #b30000;
+    }
+  </style>
 </head>
 <body>
-    <form name="frm_cadastro" action="fernando.lima59@fatec.sp.gov.br" method="post" enctype="text/plain">
-        <div class="aidilica">
-            <fieldset>
-                <legend><h2>Insira seus dados cinematográficos</h2></legend>
-                <p>
-                    <label>Nome:</label><br>
-                    <input id="caixa" type="text" name="nome" maxlength="60" required><br><br>
+  <div class="bg-row bg-top" id="top-row"></div>
+  <div class="bg-row bg-bottom" id="bottom-row"></div>
 
-                    <label>Usuário:</label><br>
-                    <input id="caixa" type="text" name="usuario" maxlength="60" required><br><br>
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(252, 227, 0, 0.547); z-index: 5; pointer-events: none;"></div>
 
-                    <label>Crie uma Senha:</label><br>
-                    <input id="caixa" type="password" name="senha" maxlength="60" required><br><br>
+  <div class="form-container">
+    <h2>Cadastro</h2>
+    <input type="text" id="name" placeholder="Nome" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Senha" />
+    <button onclick="register()">Cadastrar</button>
+    <p id="msg"></p>
+    <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+  </div>
 
-                    <label>Data de Nascimento:</label><br>
-                    <input id="caixa" type="date" name="data_nascimento" required><br><br>
+  <script>
+    const posters = [
+      "img/monkey.avif",
+      "img/flow.jpg",
+      "img/vitoria.jpg",
+      "img/aindaestouaqui.avif"
+    ];
 
-                    <label>Qual a sua trilogia favorita?</label><br>
-                    <input id="caixa" type="text" name="trilogia_favorita" maxlength="100" required><br><br>
+    function gerarFileira(id, repeticoes = 4) {
+      const container = document.getElementById(id);
+      for (let i = 0; i < repeticoes; i++) {
+        for (let poster of posters) {
+          const img = document.createElement('img');
+          img.src = poster;
+          img.alt = `Cartaz ${poster}`;
+          container.appendChild(img);
+        }
+      }
+    }
 
-                    <label>Selecione a sua idade:</label><br>
-                    <input id="caixa" type="number" name="idade" min="1" max="100" required><br><br>
+    gerarFileira("top-row");
+    gerarFileira("bottom-row");
 
-                    <label>Selecione sua rede de Cinema Favorida:</label><br>
-                    <select id="caixa" name="rede_cinema" required>
-                        <option value="Arcoplex">Arcoplex</option>
-                        <option value="Centerplex">Centerplex</option>
-                        <option value="Cine A">Cine A</option>
-                        <option value="Cine Araújo">Cine Araújo</option>
-                        <option value="Cinépolis">Cinépolis</option>
-                        <option value="Cinesystem">Cinesystem</option>
-                        <option value="Grupo Cine">Grupo Cine</option>
-                        <option value="Kinoplex">Kinoplex</option>
-                        <option value="UCI">UCI</option>
-                        <option value="Outra">Outra</option>
-                    </select><br><br>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzlXeR5ddp-gwX5p_y_dYabuOzcJCsN7pNT1hbytzxDtDVJVwZ9Fsaq7nwVeXgrtZC7/exec";
 
-                    <label>Selecione seu tipo de filme preferido</label>
-                <ul>
-                    <li><input type="checkbox" name="tipo_filme" value="Dublado"> Dublado</li>
-                    <li><input type="checkbox" name="tipo_filme" value="Legendado"> Legendado</li>
-                    <li><input type="checkbox" name="tipo_filme" value="3D"> 3D</li>
-                    <li><input type="checkbox" name="tipo_filme" value="2D"> 2D</li>
-                </ul>
+    function register() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-                <label>Informe se você tem necessidades especiais:</label><br>
-                <textarea id="caixa" name="necessidades_especiais" cols="50" rows="10"
-                    placeholder="Digite aqui suas Necessidades" required></textarea><br><br>
-                </p>
-            </fieldset>
+      if (!name || !email || !password) {
+        document.getElementById("msg").innerText = "Preencha todos os campos!";
+        return;
+      }
 
-            <fieldset class="menu">
-
-                <br>
-                <legend>Qual a classificação do último filme que assistiu?</legend>
-                <input type="radio" name="classificacao" value="Livre"> Livre<br>
-                <input type="radio" name="classificacao" value="12 anos"> 12 anos<br>
-                <input type="radio" name="classificacao" value="Só para maiores"> Só para maiores<br>
-            </fieldset>
-
-            <div style="text-align:center;">
-    <input id="botao" type="submit" value="ENVIAR">
-    <input id="botao" type="reset" value="LIMPAR"><br>
-    <a href="index.html"><img src="img/logo.png" height="50px" width="50px" alt="Logo"></a>
-</div>
-        </div>
-    </form>
-    </div>
+      fetch(scriptURL, {
+        method: "POST",
+        body: new URLSearchParams({
+          action: "register",
+          name,
+          email,
+          password,
+        }),
+      })
+      .then(res => res.text())
+      .then(data => {
+        if (data === "sucesso") {
+          document.getElementById("msg").style.color = "green";
+          document.getElementById("msg").innerText = "Cadastrado com sucesso!";
+        } else if (data === "email_ja_usado") {
+          document.getElementById("msg").innerText = "Email já cadastrado.";
+        } else {
+          document.getElementById("msg").innerText = "Erro ao cadastrar.";
+        }
+      })
+      .catch(error => {
+        document.getElementById("msg").innerText = "Erro de conexão.";
+      });
+    }
+  </script>
 </body>
 </html>
