@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localização de Cinema próximo a sua localização</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #map {
+            width: 100%;
+            height: 300px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Encontrar Cinemas Próximos</h1>
+    <button onclick="getLocationAndFindCinemas()">Buscar Cinemas Próximos</button>
+    <p id="location"></p>
+    <div id="map"></div>
+    <h2>Cinemas Próximos</h2>
+    <div id="cinemas"></div>
+
+    <script>
+        function getLocationAndFindCinemas() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPositionAndFindCinemas, showError);
+            } else {
+                document.getElementById("location").innerHTML = "Geolocalização não suportada pelo seu navegador.";
+            }
+        }
+
+        function showPositionAndFindCinemas(position) {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            document.getElementById("location").innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+            
+            let mapUrl = `https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`;
+            document.getElementById("map").innerHTML = `<iframe width="100%" height="300" src="${mapUrl}"></iframe>`;
+            
+            let googleMapsSearchUrl = `https://www.google.com/maps/search/cinemas+perto+de+mim/@${latitude},${longitude},15z`;
+            document.getElementById("cinemas").innerHTML = `<a href="${googleMapsSearchUrl}" target="_blank">Clique aqui para ver cinemas próximos</a>`;
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    document.getElementById("location").innerHTML = "Permissão negada para obter localização.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById("location").innerHTML = "Informações de localização indisponíveis.";
+                    break;
+                case error.TIMEOUT:
+                    document.getElementById("location").innerHTML = "A solicitação para obter localização expirou.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    document.getElementById("location").innerHTML = "Ocorreu um erro desconhecido.";
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
