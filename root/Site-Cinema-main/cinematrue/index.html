@@ -1,0 +1,97 @@
+<!--Informações iniciais necessárias para a página-->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <script src="ambiente.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery e Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<!--Corpo da página-->
+
+<body>
+    <!--Cabeçalho da página com seus botõees-->
+    <div>
+        <nav class="menu">
+    <div class="header-bar">
+        <div class="logo-titulo">
+            <img class="chacha" src="img/logo.png" type="button" alt="" onclick="home()">
+            <h1 class="uiui">CINE FINDER</h1>
+        </div>
+        <div class="botoes_cima">
+            <input class="button" type="button" value="Home" onclick="home()">
+            <input class="button" type="button" value="Comunidade" onclick="comunidade()">
+            <input class="button" type="button" value="Login" onclick="login()">
+            <img class="botao_de_escuro" id="inverter" src="img/night-mode.png" alt="" type="image"
+                name="botao_escuro" value="" onclick="escuro()">
+        </div>
+    </div>
+</nav>
+    </div>
+
+    <!--Aba de populares pesquisa da página-->
+    <div class="aba_amarela">
+        <div class="aba_busca">POPULARES NESTA SEMANA EM MAUÁ<img class="lupa" src="img/lupa.png" type="button" alt=""
+                height="50px" width="50px" onclick="buscar()"></div>
+    </div>
+
+
+    <!--CARROSEL É O CIRILO-->
+
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+
+            <div class="carousel-item active">
+                <div class="d-flex justify-content-center">
+                    <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=1" target="_blank"><img
+                            src="img/The-Monkey.jpg" alt="Imagem 1"> </a>
+                    <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=2" target="_blank"><img
+                            src="img/flow.jpg" alt="Imagem 2"> </a>
+                    <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=3" target="_blank"><img
+                            src="img/vitoria.jpg" alt="Imagem 3"> </a>
+                    <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=4" target="_blank"><img
+                            src="img/aindaestouaqui (2).jpg" alt="Imagem 4"> </a>
+
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center">
+                    <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=5" target="_blank"><img
+                            src="img/Um_filme_Minecraft.jpg" alt="Imagem 5"></a>
+                    <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=6" target="_blank"><img
+                            src="img/Branca_de_neve.jpg" alt="Imagem 6"> </a>
+                    <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=7" target="_blank"><img
+                            src="img/America_Admiravel_mundo_novo.jpg" alt="Imagem 7"><a>
+                            <a class="d-block w-25 mx-2" href="pagina_filme.html?fundo=8" target="_blank"><img
+                                    src="img/resgate_implacavel.jpg" alt="Imagem 8"> </a>
+
+
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+    <frameset rows="93%,*" noresise frameborder="0">
+        <frame src="index.html" scrolling="yes" name="principal"></frame>
+        <frame src="rodape.html" scrolling="no"></frame>
+    </frameset>
+</body>
+</html>

@@ -1,0 +1,301 @@
+#botao_mudar:hover {
+    height: 35px;
+    width: 125px;
+    font-size: medium;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    background rgb(255, 255, 6);
+    color: rgb(255,255,6);
+    box-shadow: 0 0 8px rgb(255, 255, 6);
+    }
+
+.centro{
+    border:  solid 1px;
+    border-color: rgb(251, 255, 0);
+    z-index: 2;
+    height: 800px;
+    width: 700px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    box-shadow: 0 0 10px rgb(255, 251, 0);
+    text-decoration: none;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* Alinha horizontalmente */
+    justify-content: center;  /* Alinha verticalmente */
+    text-align: center;  
+    }
+
+.imagens-equipe {
+    display: flex;
+    gap: 16px; /* Espaço entre as imagens, ajuste se quiser */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Alinha verticalmente */
+}
+
+.posteres{
+max-height: 492px;
+width: 20%;
+height: 20%;
+max-width: 723px;
+margin-left: 20px;
+}
+
+@media (max-width: 600px) {
+    .logo-img{
+        width: 18vw;
+        min-width: 32px;
+        max-width: 90px;
+    }
+    header{
+        font: 4vw;
+    }
+    .categora-botao{
+        font-size: small;
+        margin-left: 2vw;
+        background-color: #444;
+        border-radius: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        color: white;
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        width: 300px;
+        height: 350px;
+
+    }
+}
+
+@media (min-width: 601px) {
+    header{
+        font: 2vw;
+    }
+    .categoria-botao {
+        background-color: #444;
+        border-radius: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        color: white;
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        width: 600px;
+        height: 650px;
+      }
+}
+
+.fundo-branco{
+    background-color: white;;
+}
+
+.menu_filmes{
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+
+}
+
+.filmes{
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 50px;
+    background: linear-gradient(to bottom, rgb(128, 128, 128), rgb(255, 255, 255));
+    padding: 1%;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.botoes_cima{
+    margin-left: 50%;
+    margin-top: -60px;
+}
+
+.button{
+    background-color: rgb(20, 20, 20);
+    color:white;
+    border-radius: 20px;
+    max-width: 200px;
+    width: 100%;
+    max-height: 150px;
+    height: 100%;
+    font-size: 150%;
+    margin-left: 20px;
+}
+
+h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+ul{
+ font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+li{
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   margin: auto;
+}
+
+a{
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+.logo{
+    align-items: center;
+}
+
+footer{
+    background-color: rgb(0, 0, 0);
+    color:white;
+    padding: 2%;
+    margin-top: 2%;
+}
+
+.menu{
+border-radius: 20px;
+font-family:'Times New Roman', Times, serif;
+font-size: larger;
+height: 100%;
+width: 100%;
+}
+
+.aba_busca{
+    margin-left: 20px;
+    font-size: xx-large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.aba_amarela{
+    background-color: rgb(239, 183, 24);
+    border-radius: 80px;
+    max-width: 1200px;
+    max-height: 80px;
+    margin-left: 50%;
+    margin-top: 50px;
+}
+
+.botoes_baixo{
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 40px;
+    margin-left: 90px;
+}
+
+.button_baixo{
+    background-color: rgb(20, 20, 20);
+    color: white;
+}
+
+
+.uiui{
+    margin-left: 150px;
+    margin-top: -95px;
+    font-size: xx-large;
+}
+.chacha{
+    margin-left: 0px;
+    margin-top: 0px;
+    width: 100%;
+    height: 100%;
+    width: 150px;
+    height: 150px;
+}
+
+.reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.review-post {
+    background-color: #444;
+    border-radius: 8px;
+    padding: 10px;
+    flex: 1 1 calc(50% - 20px); /* Dois posts por linha */
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.review-poster img {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.review-content {
+    flex: 1;
+}
+
+.review-rating {
+    color: #ffcc00;
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+.review-text {
+    font-size: 0.95em;
+}
+
+/* Barra de navegação */
+.menu {
+    display: flex;
+    align-items: center;        /* Alinha verticalmente ao centro */
+    justify-content: space-between; /* Espaço entre grupos */
+    background-color: #ffcc00;
+    color: #000;
+    padding: 10px 20px;
+}
+
+/* Agrupa o ícone e o texto lado a lado */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* logo png */
+.logo {
+    width: 50px;      /* Ajuste conforme necessário */
+    height: auto;
+    margin-right: 10px;
+}
+
+/* Título do site */
+.title {
+    font-family: 'Impact', sans-serif;
+    font-size: 2em;
+    margin: 0; /* remove espaços extras */
+    white-space: nowrap; /* evita quebra de linha */
+}
+
+/* Botões superiores */
+.botoes_cima {
+    display: flex;
+    gap: 10px;
+}
+
+/* Cada botão */
+.button {
+    padding: 8px 16px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
