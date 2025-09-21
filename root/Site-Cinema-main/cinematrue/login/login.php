@@ -128,8 +128,8 @@
   <form name="form_login" method="post" action="validatelogin.php">
     <div class="form-container">
       <h2>Login</h2>
-      <input type="email" name="txt_usuario" placeholder="Email" required autocomplete="username" maxlength="100">
-      <input type="password" name="txt_senha" placeholder="Senha" required autocomplete="current-password" maxlength="72">
+     <input type="email" name="txt_email" placeholder="Email" required>
+    <input type="password" name="txt_senha" placeholder="Senha" required>
       <button type="submit" name="bt_autenticar">Entrar</button>
       <p>Não tem conta? <a href="cadastrocinefinder.php">Cadastre-se</a></p>
     </div>

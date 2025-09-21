@@ -21,7 +21,10 @@ if ($email === '' || $senha === '') {
 $email_safe = mysqli_real_escape_string($conecta_db, $email);
 
 // busca usuário pelo email
-$sql = "SELECT id, cine_user, cine_email, cine_password FROM tb_cinelogin WHERE cine_email = '$email_safe' LIMIT 1";
+$sql = "SELECT id_user, cine_user, cine_email, cine_password 
+        FROM tb_cinelogin 
+        WHERE cine_email = '$email_safe' 
+        LIMIT 1";
 $result = mysqli_query($conecta_db, $sql);
 
 if (!$result) {
@@ -46,7 +49,7 @@ $row = mysqli_fetch_assoc($result);
 mysqli_free_result($result);
 
 // pega campos do banco
-$user_id = $row['id'];
+$user_id = $row['id_user'];
 $user_nick = $row['cine_user'];
 $user_email_db = $row['cine_email'];
 $pass_db = $row['cine_password'];
