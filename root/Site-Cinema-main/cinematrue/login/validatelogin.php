@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 // login.php
 session_start();
 include 'connectionLogin.php'; // usa a sua conexão já existente
@@ -25,6 +27,7 @@ $sql = "SELECT id_user, cine_user, cine_email, cine_password
         FROM tb_cinelogin 
         WHERE cine_email = '$email_safe' 
         LIMIT 1";
+
 $result = mysqli_query($conecta_db, $sql);
 
 if (!$result) {
