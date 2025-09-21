@@ -164,22 +164,22 @@
   <div class="overlay"></div>
 
   <!-- Formulário raiz com estilo aplicado -->
-  <form name="form_login" method="post" class="login-form">
-    <fieldset>
-      <legend>Identificação do Login</legend>
+<form name="form_login" method="post" action="validatelogin.php" class="login-form" accept-charset="utf-8">
+  <fieldset>
+    <legend>Identificação do Login</legend>
 
-      <label for="usuario">Usuário ou E-mail:</label>
-      <input id="usuario" type="text" name="txt_usuario" required>
+    <label for="usuario">Usuário ou E-mail:</label>
+    <input id="usuario" type="text" name="txt_usuario" required autocomplete="username" maxlength="100" autofocus>
 
-      <label for="senha">Senha:</label>
-      <input id="senha" type="password" name="txt_senha" required>
+    <label for="senha">Senha:</label>
+    <input id="senha" type="password" name="txt_senha" required autocomplete="current-password" maxlength="72">
 
-      <div class="buttons">
-        <input type="submit" name="bt_autenticar" value="Entrar" onclick="document.form_login.action='validatelogin.php'">
-        <input type="reset" value="Limpar">
-      </div>
-    </fieldset>
-  </form>
+    <div class="buttons">
+      <button type="submit" name="bt_autenticar">Entrar</button>
+      <input type="reset" value="Limpar">
+    </div>
+  </fieldset>
+</form>
 
   <!-- Script para gerar imagens animadas -->
   <script>
