@@ -38,28 +38,34 @@ function home() {
 
         }
 
-window.onload = function () {
-    const mensagensdiv = document.getElementsByClassName('mensagens')[0];
-    const mensagem = document.getElementById('input-mensagem');
-    const agora = new Date()
-    const Tempo = agora.toLocaleString
+async function EnviarMensagem() {
+    const input = document.getElementById("input-mensagem");
+    const texto = input.value.trim();
+    if (texto === "") return;
 
-    window.EnviarMensagem = function () {
-        const div = document.createElement('div');
-        const linha = document.createElement('hr');
-        div.textContent = mensagem.value // Mais seguro que innerHTML
-        mensagensdiv.appendChild(div);
-        mensagensdiv.appendChild(linha);
-        mensagensdiv.scrollTop = mensagensdiv.scrollHeight;
-        mensagem.value = ''; // Limpa o input após envio
-    };
-};
-
-document.addEventListener('DOMContentLoaded', function() {
-        const input = document.getElementById('input-mensagem');
-        input.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                EnviarMensagem();
-            }
-        });
+    await fetch("enviar.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "mensagem=" + encodeURIComponent(texto)
     });
+
+    input.value = "";
+    CarregarMensagens();
+}
+
+async function CarregarMensagens() {
+    const resp = await fetch("listar.php");
+    const dados = await resp.json();
+
+    const divMensagens = document.querySelector(".mensagens");
+    divMensagens.innerHTML = "";
+    dados.forEach(msg => {
+        const p = document.createElement("p");
+        p.textContent = `[${msg.data_envio}] ${msg.usuario}: ${msg.mensagem}`;
+        divMensagens.appendChild(p);
+    });
+}
+
+// atualiza a cada 2s
+setInterval(CarregarMensagens, 2000);
+CarregarMensagens();
