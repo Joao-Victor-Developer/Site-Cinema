@@ -1,73 +1,89 @@
 <?php
+// login.php
 session_start();
-include 'connectionLogin.php'; // ajuste o caminho se necessário
+include 'connectionLogin.php'; // usa a sua conexão já existente
 
-// pegar POST
-$input = isset($_POST['txt_usuario']) ? trim($_POST['txt_usuario']) : '';
-$pass  = isset($_POST['txt_senha']) ? $_POST['txt_senha'] : '';
+// Pega POST (apenas email e senha conforme você pediu)
+$email = isset($_POST['txt_email']) ? trim($_POST['txt_email']) : '';
+$senha = isset($_POST['txt_senha']) ? $_POST['txt_senha'] : '';
 
 // validação simples
-if ($input === '' || $pass === '') {
-    $_SESSION['login_error'] = 'Informe usuário (ou email) e senha.';
-    header('Location: login.php');
+if ($email === '' || $senha === '') {
+    // mostra mensagem simples (pode trocar para redirect se preferir)
+    echo "<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'><title>Erro</title></head><body style='font-family:Arial, sans-serif; text-align:center; padding:40px;'>";
+    echo "<h3>Informe email e senha.</h3>";
+    echo "<p><a href='login.php'>Voltar ao login</a></p>";
+    echo "</body></html>";
     exit;
 }
 
-// preparar e executar consulta (busca por email OU nickname)
-$sql = "SELECT id, cine_user, cine_email, cine_password FROM tb_cinelogin WHERE cine_email = ? OR cine_user = ? LIMIT 1";
-$stmt = mysqli_prepare($conecta_db, $sql);
-if (!$stmt) {
-    $_SESSION['login_error'] = 'Erro no sistema. Tente novamente mais tarde.';
-    header('Location: login.php');
-    exit;
-}
-mysqli_stmt_bind_param($stmt, "ss", $input, $input);
-mysqli_stmt_execute($stmt);
-mysqli_stmt_store_result($stmt);
+// impede injection básico (mantendo estilo simples do segundo script)
+$email_safe = mysqli_real_escape_string($conecta_db, $email);
 
-if (mysqli_stmt_num_rows($stmt) === 0) {
-    mysqli_stmt_close($stmt);
-    $_SESSION['login_error'] = 'Email ou senha incorretos.';
-    header('Location: login.php');
+// busca usuário pelo email
+$sql = "SELECT id, cine_user, cine_email, cine_password FROM tb_cinelogin WHERE cine_email = '$email_safe' LIMIT 1";
+$result = mysqli_query($conecta_db, $sql);
+
+if (!$result) {
+    // erro na consulta
+    echo "<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'><title>Erro</title></head><body style='font-family:Arial, sans-serif; text-align:center; padding:40px;'>";
+    echo "<h3>Erro no sistema. Tente novamente mais tarde.</h3>";
+    echo "<p>Detalhe: " . htmlspecialchars(mysqli_error($conecta_db)) . "</p>";
+    echo "</body></html>";
     exit;
 }
 
-mysqli_stmt_bind_result($stmt, $id, $cine_user, $cine_email, $cine_password);
-mysqli_stmt_fetch($stmt);
-mysqli_stmt_close($stmt);
+if (mysqli_num_rows($result) === 0) {
+    // não encontrou email
+    echo "<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'><title>Falha</title></head><body style='font-family:Arial, sans-serif; text-align:center; padding:40px;'>";
+    echo "<h3>Email ou senha incorretos.</h3>";
+    echo "<p><a href='login.php'>Voltar ao login</a></p>";
+    echo "</body></html>";
+    exit;
+}
 
-// valida a senha (suporta hash e caso legacy em texto plano)
+$row = mysqli_fetch_assoc($result);
+mysqli_free_result($result);
+
+// pega campos do banco
+$user_id = $row['id'];
+$user_nick = $row['cine_user'];
+$user_email_db = $row['cine_email'];
+$pass_db = $row['cine_password'];
+
+// valida senha: suporta hash (password_hash) e texto plano (legacy)
 $senha_valida = false;
 
-if (password_verify($pass, $cine_password)) {
+if (password_verify($senha, $pass_db)) {
     $senha_valida = true;
 } else {
-    if ($pass === $cine_password) {
+    // fallback legacy (texto plano) — se bater, considera válido e atualiza o hash (opcional)
+    if ($senha === $pass_db) {
         $senha_valida = true;
-        // re-hash para melhorar segurança (opcional)
-        $novo_hash = password_hash($pass, PASSWORD_DEFAULT);
-        $upd = mysqli_prepare($conecta_db, "UPDATE tb_cinelogin SET cine_password = ? WHERE id = ?");
-        if ($upd) {
-            mysqli_stmt_bind_param($upd, "si", $novo_hash, $id);
-            mysqli_stmt_execute($upd);
-            mysqli_stmt_close($upd);
-        }
+        // re-hash para aumentar segurança
+        $novo_hash = password_hash($senha, PASSWORD_DEFAULT);
+        $novo_hash_safe = mysqli_real_escape_string($conecta_db, $novo_hash);
+        $upd_sql = "UPDATE tb_cinelogin SET cine_password = '$novo_hash_safe' WHERE id = " . intval($user_id);
+        @mysqli_query($conecta_db, $upd_sql);
     }
 }
 
 if (!$senha_valida) {
-    $_SESSION['login_error'] = 'Email ou senha incorretos.';
-    header('Location: login.php');
+    echo "<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'><title>Falha</title></head><body style='font-family:Arial, sans-serif; text-align:center; padding:40px;'>";
+    echo "<h3>Email ou senha incorretos.</h3>";
+    echo "<p><a href='login.php'>Voltar ao login</a></p>";
+    echo "</body></html>";
     exit;
 }
 
-// login OK: proteger sessão e redirecionar para index.html (página inicial)
+// Login OK: define sessão e redireciona para index.html
 session_regenerate_id(true);
-$_SESSION['user_id']    = $id;
-$_SESSION['user_nick']  = $cine_user;
-$_SESSION['user_email'] = $cine_email;
+$_SESSION['user_id'] = $user_id;
+$_SESSION['user_nick'] = $user_nick;
+$_SESSION['user_email'] = $user_email_db;
 
-// fechar conexão e redirecionar para a página inicial estática
+// fecha conexão e redireciona
 mysqli_close($conecta_db);
-header('Location: index.html'); // redireciona para a sua página inicial
+header('Location: index.html');
 exit;
+?>

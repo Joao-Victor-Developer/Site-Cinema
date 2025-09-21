@@ -4,22 +4,20 @@
   <meta charset="UTF-8">
   <title>Login</title>
   <style>
-    /* Reset básico */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
     }
 
-    html, body {
+    body, html {
       height: 100%;
       overflow: hidden;
       background-color: #000;
       position: relative;
     }
 
-    /* Fundo animado */
     .bg-row {
       position: absolute;
       width: 200%;
@@ -56,138 +54,93 @@
       100% { transform: translateX(50%); }
     }
 
-    /* Sobreposição amarela suave */
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(252, 227, 0, 0.45);
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    /* Estilo do formulário original com tom amarelo */
-    .login-form {
+    .form-container {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
       width: 100%;
       max-width: 400px;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 30px 25px;
-      border-radius: 8px;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
-      border: 2px solid #e1c200;
     }
 
-    .login-form fieldset {
-      border: none;
-    }
-
-    .login-form legend {
-      font-size: 1.6rem;
-      font-weight: bold;
-      margin-bottom: 20px;
+    .form-container h2 {
+      margin-bottom: 25px;
+      font-size: 26px;
       color: #222;
-      border-bottom: 3px solid #e1c200;
-      padding-bottom: 5px;
       text-align: center;
     }
 
-    .login-form label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 500;
-      color: #333;
-    }
-
-    .login-form input[type="text"],
-    .login-form input[type="password"] {
+    .form-container input {
       width: 100%;
-      padding: 10px 12px;
-      margin-bottom: 20px;
-      border: 1px solid #bbb;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #999;
       border-radius: 6px;
-      font-size: 1rem;
-      transition: border-color 0.3s;
+      font-size: 14px;
     }
 
-    .login-form input[type="text"]:focus,
-    .login-form input[type="password"]:focus {
-      border-color: #e1c200;
-      outline: none;
-    }
-
-    .login-form .buttons {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .login-form input[type="submit"],
-    .login-form input[type="reset"] {
-      padding: 10px 20px;
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #222;
+      color: #fff;
       border: none;
       border-radius: 6px;
-      font-size: 1rem;
+      font-size: 15px;
+      font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
 
-    .login-form input[type="submit"] {
-      background-color: #e1c200;
-      color: #000;
+    .form-container button:hover {
+      background-color: #444;
     }
 
-    .login-form input[type="submit"]:hover {
-      background-color: #d1af00;
+    .form-container p {
+      margin-top: 10px;
+      font-size: 13px;
+      text-align: center;
     }
 
-    .login-form input[type="reset"] {
-      background-color: #e0e0e0;
-      color: #333;
+    .form-container a {
+      color: #007bff;
+      text-decoration: none;
     }
 
-    .login-form input[type="reset"]:hover {
-      background-color: #cacaca;
+    .form-container a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-
-  <!-- Fundos animados com pôsteres -->
+  <!-- Fundos animados -->
   <div class="bg-row bg-top" id="top-row"></div>
   <div class="bg-row bg-bottom" id="bottom-row"></div>
 
-  <!-- Sobreposição amarela -->
-  <div class="overlay"></div>
+  <!-- Overlay -->
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(252, 227, 0, 0.55); z-index: 5; pointer-events: none;"></div>
 
-  <!-- Formulário raiz com estilo aplicado -->
-<form name="form_login" method="post" action="validatelogin.php" class="login-form" accept-charset="utf-8">
-  <fieldset>
-    <legend>Identificação do Login</legend>
-
-    <label for="usuario">Usuário ou E-mail:</label>
-    <input id="usuario" type="text" name="txt_usuario" required autocomplete="username" maxlength="100" autofocus>
-
-    <label for="senha">Senha:</label>
-    <input id="senha" type="password" name="txt_senha" required autocomplete="current-password" maxlength="72">
-
-    <div class="buttons">
+  <!-- Formulário adaptado -->
+  <form name="form_login" method="post" action="validatelogin.php">
+    <div class="form-container">
+      <h2>Login</h2>
+      <input type="email" name="txt_usuario" placeholder="Email" required autocomplete="username" maxlength="100">
+      <input type="password" name="txt_senha" placeholder="Senha" required autocomplete="current-password" maxlength="72">
       <button type="submit" name="bt_autenticar">Entrar</button>
-      <input type="reset" value="Limpar">
+      <p>Não tem conta? <a href="cadastro.php">Cadastre-se</a></p>
     </div>
-  </fieldset>
-</form>
+  </form>
 
-  <!-- Script para gerar imagens animadas -->
   <script>
     const posters = [
-      "../cinematrue/img/monkey.avif",
-      "../cinematrue/img/flow.jpg",
-      "../cinematrue/img/vitoria.jpg",
-      "../cinematrue/img/aindaestouaqui.avif"
+      "img/monkey.avif",
+      "img/flow.jpg",
+      "img/vitoria.jpg",
+      "img/aindaestouaqui.avif"
     ];
 
     function gerarFileira(id, repeticoes = 4) {
@@ -205,6 +158,5 @@
     gerarFileira("top-row");
     gerarFileira("bottom-row");
   </script>
-
 </body>
 </html>
