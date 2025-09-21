@@ -131,7 +131,7 @@
       <input type="email" name="txt_usuario" placeholder="Email" required autocomplete="username" maxlength="100">
       <input type="password" name="txt_senha" placeholder="Senha" required autocomplete="current-password" maxlength="72">
       <button type="submit" name="bt_autenticar">Entrar</button>
-      <p>Não tem conta? <a href="cadastro.php">Cadastre-se</a></p>
+      <p>Não tem conta? <a href="cadastrocinefinder.php">Cadastre-se</a></p>
     </div>
   </form>
 

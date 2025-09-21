@@ -121,6 +121,9 @@
     
   </style>
 </head>
+<header>
+<img src="img/logo.png" alt="Página inicial" onclick="window.location.href='../index.html'" style="cursor: pointer; position: fixed; top: 10px; left: 10px; width: 120px; z-index: 15;">
+</header>
 <body>
   <div class="bg-row bg-top" id="top-row"></div>
   <div class="bg-row bg-bottom" id="bottom-row"></div>
@@ -145,8 +148,10 @@
     Misterio<input type="radio" name="Opcao" value="Misterio">
     </div>
     <input type="submit" name="bt_incluir" value="Cadastrar!">
+    <p>Possui uma conta? <a href="login.php">Faça o Login</a></p>
   </div>
   </form>
+  
 
   <script>
     const posters = [
