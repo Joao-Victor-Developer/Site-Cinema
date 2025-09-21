@@ -125,13 +125,17 @@
   <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(252, 227, 0, 0.55); z-index: 5; pointer-events: none;"></div>
 
   <!-- Formulário adaptado -->
-  <form name="form_login" method="post" action="validatelogin.php">
+   <form name="form_login" action="validatelogin.php" method="post">
     <div class="form-container">
       <h2>Login</h2>
-     <input type="email" name="txt_email" placeholder="Email" required>
-    <input type="password" name="txt_senha" placeholder="Senha" required>
-      <button type="submit" name="bt_autenticar">Entrar</button>
-      <p>Não tem conta? <a href="cadastro.php">Cadastre-se</a></p>
+            <label for="txt_email">Email:</label>
+            <input type="text" id="txt_email" name="txt_email" required><br><br>
+
+            <label for="txt_senha">Senha:</label>
+            <input type="password" id="txt_senha" name="txt_senha" required><br><br>
+
+            <input type="submit" name="bt_logar" value="Entrar">
+            <input type="button" name="bt_cadastro" value="Fazer cadastro" onclick="window.location.href='cadastro.php'">
     </div>
   </form>
 
@@ -149,7 +153,7 @@
         for (let poster of posters) {
           const img = document.createElement('img');
           img.src = poster;
-          img.alt = `Cartaz ${poster}`;
+          img.alt = Cartaz ${poster};
           container.appendChild(img);
         }
       }
