@@ -131,7 +131,7 @@
      <input type="email" name="txt_email" placeholder="Email" required>
     <input type="password" name="txt_senha" placeholder="Senha" required>
       <button type="submit" name="bt_autenticar">Entrar</button>
-      <p>Não tem conta? <a href="cadastrocinefinder.php">Cadastre-se</a></p>
+      <p>Não tem conta? <a href="cadastro.php">Cadastre-se</a></p>
     </div>
   </form>
 
