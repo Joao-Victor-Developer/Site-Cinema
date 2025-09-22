@@ -55,7 +55,7 @@ async function EnviarMensagem() {
 
 async function CarregarMensagens() {
     const resp = await fetch("listar.php");
-    const dados = await resp.json();
+    const dados = await resp.text();
 
     const divMensagens = document.querySelector(".mensagens");
     divMensagens.innerHTML = "";
