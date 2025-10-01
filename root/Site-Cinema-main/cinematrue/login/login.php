@@ -163,4 +163,5 @@
     gerarFileira("bottom-row");
   </script>
 </body>
+<img src="img/logo.png" alt="Página inicial" onclick="window.location.href='../index.html'" style="cursor: pointer; position: fixed; top: 10px; left: 10px; width: 120px; z-index: 15;">
 </html>

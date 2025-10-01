@@ -48,3 +48,4 @@ if (mysqli_num_rows($result) > 0) {
 
 mysqli_close($conecta_db);
 ?>
+<img src="img/logo.png" alt="Página inicial" onclick="window.location.href='../index.html'" style="cursor: pointer; position: fixed; top: 10px; left: 10px; width: 120px; z-index: 15;">
