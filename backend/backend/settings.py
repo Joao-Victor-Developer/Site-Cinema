@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cadastrologin',
     'comunidade',
-    'restframework',
+    'rest_framework',
     'corsheaders',
 ]
 
