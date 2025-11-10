@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir Grupo - {{ grupo.nome }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h2 class="mb-0">Confirmar Exclusão</h2>
+            </div>
+            <div class="card-body">
+                <p class="alert alert-warning">
+                    <strong>Atenção!</strong> Você está prestes a excluir o grupo <strong>"{{ grupo.nome }}"</strong>.
+                </p>
+                
+                <p>Esta ação <strong>não pode ser desfeita</strong> e todas as mensagens do grupo serão perdidas permanentemente.</p>
+                
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>Informações do Grupo:</h5>
+                        <p><strong>Nome:</strong> {{ grupo.nome }}</p>
+                        <p><strong>Descrição:</strong> {{ grupo.descricao }}</p>
+                        <p><strong>Membros:</strong> {{ grupo.membros.count }}</p>
+                        <p><strong>Mensagens:</strong> {{ grupo.mensagens.count }}</p>
+                    </div>
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-danger">
+                            🗑️ Sim, Excluir Grupo Permanentemente
+                        </button>
+                        <a href="{% url 'chat:lista_grupos' %}" class="btn btn-secondary">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

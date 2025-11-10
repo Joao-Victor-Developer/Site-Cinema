@@ -1,0 +1,103 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}{{ grupo.nome }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>{{ grupo.nome }}</h1>
+        <p class="text-muted">{{ grupo.descricao }}</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="{% url 'chat:lista_grupos' %}" class="btn btn-secondary">Voltar para Grupos</a>
+        {% if user in grupo.membros.all and user != grupo.criador %}
+            <a href="{% url 'chat:sair_grupo' grupo.id %}" class="btn btn-outline-danger">Sair do Grupo</a>
+        {% endif %}
+        
+        <!-- BOTÃO EXCLUIR - APENAS PARA CRIADOR/ADMIN -->
+        {% if user == grupo.criador or user.is_superuser %}
+            <a href="{% url 'chat:excluir_grupo' grupo.id %}" class="btn btn-danger">
+                🗑️ Excluir Grupo
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Chat do Grupo</h5>
+            </div>
+            <div class="card-body" style="max-height: 400px; overflow-y: auto;" id="chat-messages">
+                {% for mensagem in mensagens %}
+                <div class="mb-3">
+                    <strong>{{ mensagem.autor.username }}</strong>
+                    <small class="text-muted">em {{ mensagem.data_envio|date:"d/m/Y H:i" }}</small>
+                    <p class="mb-1">{{ mensagem.conteudo }}</p>
+                </div>
+                {% empty %}
+                <p class="text-muted">Nenhuma mensagem ainda. Seja o primeiro a enviar uma mensagem!</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% if user in grupo.membros.all %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.conteudo }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-warning mt-3">
+            Você precisa ser membro do grupo para enviar mensagens.
+            <a href="{% url 'chat:entrar_grupo' grupo.id %}" class="alert-link">Entrar no grupo</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Informações do Grupo</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Criador:</strong> {{ grupo.criador.username }}</p>
+                <p><strong>Data de criação:</strong> {{ grupo.data_criacao|date:"d/m/Y" }}</p>
+                <p><strong>Membros:</strong> {{ grupo.membros.count }}</p>
+                <p><strong>Total de mensagens:</strong> {{ grupo.mensagens.count }}</p>
+                
+                <h6>Membros:</h6>
+                <ul class="list-unstyled">
+                    {% for membro in grupo.membros.all %}
+                    <li>
+                        {{ membro.username }}
+                        {% if membro == grupo.criador %}
+                            <span class="badge bg-primary">Criador</span>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script>
+// Rolagem automática para a última mensagem
+document.addEventListener('DOMContentLoaded', function() {
+    const chatMessages = document.getElementById('chat-messages');
+    if (chatMessages) {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+});
+</script>
+{% endblock %}
+{% endblock %}

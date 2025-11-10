@@ -1,0 +1,51 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Grupos da Comunidade{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Grupos da Comunidade</h1>
+    <a href="{% url 'chat:criar_grupo' %}" class="btn btn-primary">Criar Novo Grupo</a>
+</div>
+
+<div class="row">
+    {% for grupo in grupos %}
+    <div class="col-md-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ grupo.nome }}</h5>
+                <p class="card-text">{{ grupo.descricao }}</p>
+                <p class="text-muted">
+                    Criado por: {{ grupo.criador.username }}<br>
+                    Membros: {{ grupo.membros.count }}<br>
+                    Mensagens: {{ grupo.mensagens.count }}
+                </p>
+                <div class="d-flex gap-2 flex-wrap">
+                    {% if user in grupo.membros.all %}
+                        <a href="{% url 'chat:detalhes_grupo' grupo.id %}" class="btn btn-success">Entrar no Chat</a>
+                        {% if user != grupo.criador %}
+                            <a href="{% url 'chat:sair_grupo' grupo.id %}" class="btn btn-outline-danger">Sair</a>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'chat:entrar_grupo' grupo.id %}" class="btn btn-primary">Entrar no Grupo</a>
+                    {% endif %}
+                    
+                    <!-- BOTÃO EXCLUIR - APENAS PARA CRIADOR/ADMIN -->
+                    {% if user == grupo.criador or user.is_superuser %}
+                        <a href="{% url 'chat:excluir_grupo' grupo.id %}" class="btn btn-outline-danger ms-auto">
+                            🗑️ Excluir
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">
+            Nenhum grupo criado ainda. <a href="{% url 'chat:criar_grupo' %}">Crie o primeiro grupo!</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
