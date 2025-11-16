@@ -1,0 +1,54 @@
+<div class="signup-page">
+  <div class="signup-card">
+    <img src="/assets/logo.png" alt="Cine Finder" class="logo" />
+
+    <h1>Crie sua Conta</h1>
+    <p class="subtitle">Faça parte do Cine Finder e descubra o mundo do cinema perto de você.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      
+      <div class="row">
+        <label>Nome completo</label>
+        <input type="text" formControlName="nome" placeholder="Seu nome" />
+        <small class="error" *ngIf="form.controls['nome'].touched && form.controls['nome'].invalid">
+          Informe seu nome.
+        </small>
+      </div>
+
+      <div class="row">
+        <label>Nickname</label>
+        <input type="text" formControlName="nickname" placeholder="Como quer ser chamado">
+        <small class="error" *ngIf="form.controls['nickname'].touched && form.controls['nickname'].invalid">
+          Informe um nickname válido.
+        </small>
+      </div>
+
+      <div class="row">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="seu@email">
+        <small class="error" *ngIf="form.controls['email'].touched && form.controls['email'].invalid">
+          Informe um e-mail válido.
+        </small>
+      </div>
+
+      <div class="row">
+        <label>Senha</label>
+        <input type="password" formControlName="senha" placeholder="Mínimo 6 caracteres">
+        <small class="error" *ngIf="form.controls['senha'].touched && form.controls['senha'].invalid">
+          A senha deve ter pelo menos 6 caracteres.
+        </small>
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="loading">
+        {{ loading ? 'Criando conta...' : 'Criar conta' }}
+      </button>
+
+      <p class="server-error" *ngIf="error">{{ error }}</p>
+
+      <button type="button" class="btn-link" routerLink="/login">
+        Já tenho uma conta
+      </button>
+
+    </form>
+  </div>
+</div>

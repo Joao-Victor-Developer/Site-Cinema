@@ -1,0 +1,38 @@
+<div class="movies-page">
+  <h1 class="title">🎬 Catálogo de Filmes</h1>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Buscar filmes..."
+      (keyup.enter)="search()"
+    />
+    <button (click)="search()">Buscar</button>
+  </div>
+
+  <div *ngIf="loading" class="loading-text">Carregando filmes...</div>
+
+  <div class="movies-grid" *ngIf="!loading">
+    <div
+      class="movie-card"
+      *ngFor="let m of popular"
+      [routerLink]="['/movie', m.id]"
+    >
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500' + m.poster_path"
+        alt="{{ m.title }}"
+      />
+
+      <div class="overlay">
+        <span>{{ m.title }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination" *ngIf="!loading && isSearching">
+    <button (click)="prevPage()" [disabled]="page <= 1">Anterior</button>
+    <span>Página {{ page }}</span>
+    <button (click)="nextPage()">Próxima</button>
+  </div>
+</div>

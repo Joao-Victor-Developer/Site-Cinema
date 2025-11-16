@@ -1,0 +1,8 @@
+Terá que ser necessário rodar 3 servidores locais:
+
+1. Backend: no terminal com o caminho Site-Cinema\backend> rode py manage.py runserver 8000
+No link você poderá acessar api/usuarios ou api/login
+
+2. Comunidade: no terminal com o caminho Site-Cinema\Comunidade\comunidade rode py manage.py runserver 8001
+
+3. Um servidor pro Angular

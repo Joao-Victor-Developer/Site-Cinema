@@ -1,0 +1,39 @@
+<div class="backdrop" [style.background-image]="'url(' + backdrop + ')'"></div>
+
+<div class="overlay"></div>
+
+<div class="details-container" *ngIf="movie">
+  <div class="poster">
+    <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" />
+  </div>
+
+  <div class="info">
+    <h1>{{ movie.title }}</h1>
+
+    <p class="tagline">{{ movie.tagline }}</p>
+
+    <p class="overview">{{ movie.overview }}</p>
+
+    <div class="meta">
+      <span>⭐ {{ movie.vote_average.toFixed(1) }}</span>
+      <span>📅 {{ movie.release_date }}</span>
+      <span>⏱️ {{ movie.runtime }} min</span>
+    </div>
+
+    <div class="genres">
+      <span *ngFor="let g of movie.genres">{{ g.name }}</span>
+    </div>
+
+    <button class="back" routerLink="/movies">← Voltar ao Catálogo</button>
+  </div>
+</div>
+
+<div class="trailer" *ngIf="safeTrailerUrl">
+  <h2>Trailer Oficial</h2>
+  <iframe
+    [src]="safeTrailerUrl"
+    frameborder="0"
+    allowfullscreen
+  >
+  </iframe>
+</div>

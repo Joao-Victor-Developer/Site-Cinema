@@ -1,0 +1,96 @@
+<div class="home-hero" [ngStyle]="{'background-image': heroMovie ? 'linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)), url(' + (heroMovie.poster || heroMovie.backdrop) + ')' : ''}">
+  <div class="overlay-top">
+    <img class="logo" src="/assets/logo.png" alt="Cine Finder Logo" />
+
+    <nav class="top-nav">
+      <a routerLink="/">Home</a>
+      <a routerLink="/movies">Filmes</a>
+      <a routerLink="/cinemas">Cinemas</a>
+      <a routerLink="/chat">Chat</a>
+      <a routerLink="/login" class="btn-outline">Entrar</a>
+    </nav>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <h1 class="site-title">CINE <span>FINDER</span></h1>
+      <p class="tagline">Encontre filmes e cinemas — a experiência cinematográfica que você merece.</p>
+
+      <div class="search-row">
+        <input
+          type="text"
+          placeholder="Procurar filme, ator ou gênero..."
+          [(ngModel)]="query"
+          (keyup.enter)="search()"
+        />
+        <button (click)="search()" class="btn-primary">Buscar</button>
+        <button routerLink="/cinemas" class="btn-ghost">Encontrar Cinemas</button>
+      </div>
+
+      <div class="hero-actions" *ngIf="heroMovie">
+        <button (click)="openMovie(heroMovie.id)" class="watch-btn">Ver detalhes</button>
+        <span class="meta">
+          Populares · {{ heroMovie.title || heroMovie.name }}
+        </span>
+      </div>
+    </div>
+
+    <div class="hero-right" *ngIf="heroMovie">
+      <div class="poster-wrap">
+        <img [src]="heroMovie.poster || heroMovie.backdrop" alt="Poster" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <header class="section-header">
+    <h2>Populares na semana</h2>
+    <a routerLink="/movies" class="see-all">Ver todos</a>
+  </header>
+
+  <div class="carousel" *ngIf="popular.length > 0">
+    <div
+      class="movie-card"
+      *ngFor="let m of popular"
+      (click)="openMovie(m.id)"
+    >
+      <div class="poster">
+        <img [src]="m.poster || m.backdrop" alt="{{ m.title || m.name }}" />
+      </div>
+
+      <div class="card-info">
+        <h3>{{ m.title || m.name }}</h3>
+        <p class="genres">
+          {{ m.genres && m.genres.length ? (m.genres | slice:0:2).join(', ') : '' }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty" *ngIf="popular.length === 0">
+    Nenhum filme popular encontrado.
+  </div>
+</section>
+
+<section class="section muted">
+  <header class="section-header">
+    <h2>Em cartaz</h2>
+  </header>
+
+  <div class="carousel small" *ngIf="nowPlaying.length > 0">
+    <div
+      class="movie-card"
+      *ngFor="let m of nowPlaying"
+      (click)="openMovie(m.id)"
+    >
+      <div class="poster">
+        <img [src]="m.poster || m.backdrop" alt="{{ m.title || m.name }}" />
+      </div>
+
+      <div class="card-info">
+        <h3>{{ m.title || m.name }}</h3>
+      </div>
+    </div>
+  </div>
+</section>

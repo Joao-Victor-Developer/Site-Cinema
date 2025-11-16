@@ -1,0 +1,333 @@
+/* -----------------------------------------------------
+   FONTS
+------------------------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@300;400;600&display=swap');
+
+:host {
+  display: block;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #fff;
+}
+
+/* -----------------------------------------------------
+   NAVBAR FIXA + LOGO CORRIGIDA
+------------------------------------------------------ */
+.overlay-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 72px;
+  padding: 0 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  z-index: 9999;
+  overflow: visible;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.9),
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0)
+  );
+  backdrop-filter: blur(6px);
+}
+
+.overlay-top .logo {
+  width: 120px;       /* TAMANHO CONTROLADO */
+  height: auto;
+  object-fit: contain;
+  display: block;
+  padding: 6px 0;
+  z-index: 10000;
+  -webkit-user-drag: none;
+  margin-top: 32px;
+}
+
+/* Links da Navbar */
+.top-nav {
+  display: flex;
+  gap: 1.6rem;
+  align-items: center;
+
+  a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.45rem 0.2rem;
+    transition: color .18s ease;
+
+    &:hover {
+      color: #f2c12e;
+    }
+  }
+
+  .btn-outline {
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.06);
+    color: #fff !important;
+    font-weight: 600;
+    transition: all .18s ease;
+
+    &:hover {
+      background: #f2c12e;
+      color: #000 !important;
+      box-shadow: 0 0 12px rgba(242,193,46,0.5);
+    }
+  }
+}
+
+/* -----------------------------------------------------
+   HERO (com espaço para navbar fixa)
+------------------------------------------------------ */
+.home-hero {
+  position: relative;
+  padding-top: 92px;    /* Es paço da navbar */
+  min-height: 75vh;
+
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .hero-content {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem 6rem;
+    z-index: 5;
+
+    .hero-left {
+      max-width: 58%;
+
+      .site-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 3.2rem;
+        margin: 0 0 0.6rem;
+        letter-spacing: 1px;
+
+        span {
+          color: #f2c12e;
+        }
+      }
+
+      .tagline {
+        color: rgba(255,255,255,0.85);
+        margin-bottom: 1.2rem;
+        font-size: 1.05rem;
+      }
+
+      .search-row {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        input {
+          flex: 1;
+          padding: 0.85rem 1rem;
+          border-radius: 10px;
+          border: 1px solid rgba(255,255,255,0.06);
+          background: rgba(10,10,10,0.55);
+          color: #fff;
+          outline: none;
+          transition: .18s;
+
+          &:focus {
+            border-color: #f2c12e;
+            box-shadow: 0 0 10px rgba(242,193,46,0.6);
+          }
+        }
+
+        .btn-primary {
+          padding: 0.8rem 1rem;
+          border-radius: 10px;
+          cursor: pointer;
+          font-weight: 600;
+
+          background: linear-gradient(180deg, #ffd65a, #f2c12e);
+          color: #000;
+
+          box-shadow: 0 8px 30px rgba(242,193,46,0.16);
+
+          &:hover {
+            box-shadow: 0 0 12px rgba(242,193,46,0.5);
+          }
+        }
+
+        .btn-ghost {
+          padding: 0.8rem 1rem;
+          border-radius: 10px;
+          cursor: pointer;
+          font-weight: 600;
+
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.14);
+
+          &:hover {
+            background: rgba(255,255,255,0.12);
+          }
+        }
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+        .watch-btn {
+          background: transparent;
+          color: #fff;
+          border: 1px solid rgba(255,255,255,0.14);
+          padding: 0.6rem 1rem;
+          border-radius: 8px;
+          cursor: pointer;
+
+          &:hover {
+            background: rgba(255,255,255,0.1);
+          }
+        }
+
+        .meta {
+          color: rgba(255,255,255,0.65);
+        }
+      }
+    }
+
+    .hero-right {
+      width: 340px;
+
+      .poster-wrap {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 
+          0 30px 60px rgba(0, 0, 0, 0.65),
+          0 10px 30px rgba(242,193,46,0.12);
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+          object-fit: cover;
+          transform: translateY(-5px);
+        }
+      }
+    }
+  }
+}
+
+/* -----------------------------------------------------
+   SEÇÕES / CARROSSEL
+------------------------------------------------------ */
+.section {
+  padding: 2.5rem 6rem;
+  background: linear-gradient(180deg, rgba(0,0,0,0), #070707);
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      letter-spacing: .5px;
+      margin-bottom: 1rem;
+    }
+
+    .see-all {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: .18s;
+
+      &:hover {
+        color: #f2c12e;
+      }
+    }
+  }
+
+  .carousel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+
+    .movie-card {
+      min-width: 200px;
+      background: linear-gradient(180deg, #141414, #0f0f0f);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: .18s;
+      border: 1px solid rgba(255,255,255,0.03);
+
+      .poster img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+
+      .card-info {
+        padding: 0.7rem 0.8rem;
+
+        h3 {
+          margin: 0;
+          font-size: 1rem;
+        }
+
+        .genres {
+          color: rgba(255,255,255,0.62);
+          font-size: .85rem;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 
+          0 20px 40px rgba(0,0,0,0.6),
+          0 6px 24px rgba(242,193,46,0.12);
+      }
+    }
+  }
+}
+
+/* -----------------------------------------------------
+   RESPONSIVE
+------------------------------------------------------ */
+@media (max-width: 900px) {
+  .home-hero .hero-content {
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .hero-left {
+    max-width: 100% !important;
+    text-align: center;
+  }
+
+  .overlay-top {
+    height: 64px;
+    padding: 0 1rem;
+  }
+
+  .overlay-top .logo {
+    width: 90px;
+    padding: 4px 0;
+  }
+
+  .home-hero {
+    padding-top: 78px;
+  }
+}
