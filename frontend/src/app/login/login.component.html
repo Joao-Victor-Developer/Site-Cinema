@@ -1,0 +1,30 @@
+<div class="login-page">
+  <div class="login-card">
+
+    <img src="/assets/logo.png" class="logo" />
+    <h1>Entrar</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="row">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="seu@email">
+      </div>
+
+      <div class="row">
+        <label>Senha</label>
+        <input type="password" formControlName="senha" placeholder="Sua senha">
+      </div>
+
+      <button class="btn-primary" type="submit" [disabled]="loading">
+        {{ loading ? "Entrando..." : "Entrar" }}
+      </button>
+
+      <p class="server-error" *ngIf="error">{{ error }}</p>
+
+      <button type="button" routerLink="/signup" class="btn-link">
+        Criar conta
+      </button>
+    </form>
+  </div>
+</div>

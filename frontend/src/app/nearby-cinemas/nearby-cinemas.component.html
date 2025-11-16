@@ -1,0 +1,57 @@
+<div class="cinemas-page">
+  <h1>🎥 Cinemas Perto de Você</h1>
+
+  <div *ngIf="loading" class="loading">
+    Obtendo sua localização e procurando cinemas...
+  </div>
+
+  <!-- fallback / manual -->
+  <div class="manual" *ngIf="!loading && showManual">
+    <p>
+      Não foi possível acessar sua localização automaticamente. Informe
+      coordenadas ou tente novamente.
+    </p>
+
+    <div class="manual-row">
+      <label>Latitude</label>
+      <input type="number" step="0.000001" [(ngModel)]="userLat" />
+      <label>Longitude</label>
+      <input type="number" step="0.000001" [(ngModel)]="userLon" />
+      <label>Raio (m)</label>
+      <input type="number" [(ngModel)]="radius" />
+    </div>
+
+    <div class="manual-actions">
+      <button (click)="retryLocation()">Tentar novamente</button>
+      <button (click)="searchManually()">Buscar cinemas</button>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && cinemas.length === 0" class="no-results">
+    Nenhum cinema encontrado dentro do raio atual. Tente aumentar o raio ou
+    atualizar a localização.
+  </div>
+
+  <div class="cinema-list" *ngIf="!loading && cinemas.length > 0">
+    <div class="cinema-card" *ngFor="let c of cinemas">
+      <h2>{{ c.name }}</h2>
+      <p>📍 {{ c.address }}</p>
+      <p>📏 {{ c.distance }} km</p>
+
+      <div class="card-actions">
+        <a
+          class="maps-button"
+          target="_blank"
+          [href]="
+            'https://www.google.com/maps/search/?api=1&query=' +
+            c.lat +
+            ',' +
+            c.lon
+          "
+        >
+          Abrir no Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
